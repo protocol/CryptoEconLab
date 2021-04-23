@@ -103,6 +103,8 @@ You can vew our current slate of publications, talks, and other resources on [ou
 
 ## Team
 
+[Zixuan (ZX) Zhang](https://research.protocol.ai/authors/zixuan-zhang/)
+
 ## Contact
 
 You can reach out to us anytime with your question and interest in these projects by emailing [research@protocol.ai](mailto:research@protocol.ai)
