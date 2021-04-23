@@ -63,14 +63,12 @@ We welcome discussion of our [current Open Problems](https://github.com/protocol
   <tbody>
     <tr>
       <td rowspan="3">Area 1</td>
-      <td> OP 1</td>
+      <td> open problem 1</td>
       <td rowspan="3">description 1</td>
    </tr><tr>
-      <td> OP 2</td>
+      <td> open problem 2</td>
     </tr><tr>
-      <td>OP 3</td>
-     </tr><tr>
-      <td>Proof of Useful Space from hash-based PoS</td>
+      <td>open problem 3</td>
      </tr>
   <tr>
       <td rowspan="3">Area 2</td>
