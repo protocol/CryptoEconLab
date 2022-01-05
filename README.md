@@ -62,13 +62,13 @@ We welcome discussion of our [current Open Problems](https://github.com/protocol
 
   <tbody>
     <tr>
-      <td rowspan="3">Area 1</td>
-      <td> open problem 1</td>
+      <td rowspan="3">General Incentive Research</td>
+      <td> Incentivized Network Formation</td>
       <td rowspan="3">description 1</td>
    </tr><tr>
-      <td> open problem 2</td>
+      <td> Truthful Games for Incentives under Unreliable Signals</td>
     </tr><tr>
-      <td>open problem 3</td>
+      <td>oValue Attribution in a Network of Contributions</td>
      </tr>
   <tr>
       <td rowspan="3">Area 2</td>
