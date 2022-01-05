@@ -109,7 +109,7 @@ You can vew our current slate of publications, talks, and other resources on [ou
 
 ###  Hiring 🚀
 
-We are working to expand the team -- if you're an interested cryptoeconomics researcher, visit PL's [jobs page](https://jobs.lever.co/protocol?team=Research%20Development)to learn more and apply! 
+We are working to expand the team -- if you're a scientist or engineer interested in cryptoeconomics research, visit PL's [jobs page](https://jobs.lever.co/protocol?team=Research%20Development) to learn more and apply! 
 
 ## Contact
 
