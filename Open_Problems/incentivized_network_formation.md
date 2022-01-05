@@ -67,7 +67,7 @@ These papers illustrate interesting approaches to related problems from the broa
 12. Bala, V., and Goyal, S. 2003. [A Noncooperative Model of Network Formation](https://onlinelibrary.wiley.com/doi/abs/10.1111/1468-0262.00155)
 13. Hoory, S., _et al._ 2006.[Expander graphs and their applications](https://www.ams.org/journals/bull/2006-43-04/S0273-0979-06-01126-8/S0273-0979-06-01126-8.pdf)
 14. Nielsen, M.A. 2005. [Introduction to expander graphs](https://michaelnielsen.org/blog/archive/notes/expander_graphs.pdf)
-15. Even-Dar, E. _et al._ _[A Network Formation Game for Bipartite Exchange Economies](https://www.cis.upenn.edu/~mkearns/papers/econform.pdf)
+15. Even-Dar, E. _et al._ [A Network Formation Game for Bipartite Exchange Economies](https://www.cis.upenn.edu/~mkearns/papers/econform.pdf)
 
 ### Notes on existing conversations
 
