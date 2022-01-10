@@ -39,7 +39,7 @@ Progress in this area will also help us to model value creation and flows within
 
 These references illustrate some of the areas we think provide useful insights to this problem: 
 
-1. Buhalis,D., and Volchek, K. 2021. [Bridging marketing theory and big data analytics: The taxonomy of marketing attribution](https://www.sciencedirect.com/science/article/abs/pii/S0268401220314523?via%3Dihub)
+1. Buhalis, D., and Volchek, K. 2021. [Bridging marketing theory and big data analytics: The taxonomy of marketing attribution](https://www.sciencedirect.com/science/article/abs/pii/S0268401220314523?via%3Dihub)
 2. Kannan, P., _et al._ 2016. [The path to purchase and attribution modeling: Introduction to special section](https://pure.rug.nl/ws/files/81649379/The_path_to_purchase_and_attribution_modeling_Introduction_to_special_section.pdf)
 3. Anderl, E., _et al._ 2013. [Mapping the Customer Journey: A Graph-Based Framework for Online Attribution Modeling](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2343077)
 4. Nakatsu, R., _et al._ 2014. [A taxonomy of crowdsourcing based on task complexity](https://journals.sagepub.com/doi/10.1177/0165551514550140)
