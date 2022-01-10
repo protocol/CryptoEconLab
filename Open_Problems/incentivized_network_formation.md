@@ -44,7 +44,7 @@ Your contribution might resemble ZX's [work using state space representations to
 
 ### Estimated impact
 
-Improved Network control via decentralized incentive mechanisms will enable new innovations in many systems modeled as a network, including but not limited to:
+Improved network control via decentralized incentive mechanisms will enable new innovations in many systems modeled as a network, including but not limited to:
 - Filecoin storage and retrieval market performance improvements 
 - improved logistics networks
 - more efficient transportation networks and two-sided markets
@@ -55,32 +55,18 @@ Improved Network control via decentralized incentive mechanisms will enable new 
 These papers illustrate interesting approaches to related problems from the broader research ecosystem, and we've referenced them in internal discussions about this open problem: 
 
 0. Jackson, M.O. 2003. [Allocation rules for network games](https://authors.library.caltech.edu/79723/1/sswp1160.pdf)
-
 1. Tardos, E., and Wexler, T., in Nisan _et al_ 2007. [Algorithmic Game Theory Ch19: Network Formation Games and the Potential Function Method](https://dir.ilam.ac.ir/mozafar/gt/s15/Nisan_Non-printable.pdf#page=508)
-
 2. Watts, A. 1999. [A Dynamic Model of Network Formation](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.454.9588&rep=rep1&type=pdf)
-
-3. Jackson, M.O. 2003. [A Survey of Models of Network Formation: Stability and Efficiency]
-(https://web.stanford.edu/~jacksonm/netsurv.pdf)
-
+3. Jackson, M.O. 2003. [A Survey of Models of Network Formation: Stability and Efficiency](https://web.stanford.edu/~jacksonm/netsurv.pdf)
 4. Eberhardt, R., and Kennedy, J. 1995. [A New Optimizer Using Particle Swarm Theory](http://www.ppgia.pucpr.br/~alceu/mestrado/aula3/PSO_2.pdf)
-
 5. Xiao, H., _et al._ 2020. [Two-level structure swarm formation system with self-organized topology network](https://www.sciencedirect.com/science/article/pii/S0925231219316558)
-
 6. Dennis, L.K.H. 2015. [Cooperative Network Formation between Swarm Robots](http://utpedia.utp.edu.my/16515/)
-
 7. Freeman, R.A., _et al._ 2006. [Distributed Estimation and Control of Swarm Formation Statistics](https://ieeexplore.ieee.org/abstract/document/1655446)
-
 8. Skyrms, B., and Pemantle, R. 2009. [A Dynamic Model of Social Network Formation](https://link.springer.com/chapter/10.1007/978-3-642-01284-6_11)
-
 9. Derks,J., _et al._ 2008. [Local Dynamics in Network Formation](https://dke.maastrichtuniversity.nl/f.thuijsman/local%20dynamics.pdf)
-
 10. Bala, V., and Goyal, S. 2003. [A Noncooperative Model of Network Formation](https://onlinelibrary.wiley.com/doi/abs/10.1111/1468-0262.00155)
-
 11. Hoory, S., _et al._ 2006. [Expander graphs and their applications](https://www.ams.org/journals/bull/2006-43-04/S0273-0979-06-01126-8/S0273-0979-06-01126-8.pdf)
-
 12. Nielsen, M.A. 2005. [Introduction to expander graphs](https://michaelnielsen.org/blog/archive/notes/expander_graphs.pdf)
-
 13. Even-Dar, E. _et al._ [A Network Formation Game for Bipartite Exchange Economies](https://www.cis.upenn.edu/~mkearns/papers/econform.pdf)
 
 ### Notes on existing conversations
