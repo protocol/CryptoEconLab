@@ -9,7 +9,7 @@ Some of the large distributed systems that we are most interested in are best mo
 
 Much of cryptoeconomics today relies on “provable” signals to construct incentives and mechanisms. However, not all signals are verifiable and many are subject to [“wash trading”](https://www.investopedia.com/terms/w/washtrading.asp), wherein players engage in market activity in order to mislead other players in the market.  
 
-In the large distributed networks CryptoEconLab is studying, it is difficult to verify the truthfulness of the signals players send. When protocols can’t rely on cryptographic primitives to restrain undesirable behaviours, it is natural to look into economic games that can align participants' incentives with that of the system. We therefore wish to design games with payoff structures encouraging truth-telling as the optimal action for rational players: designs in which truth-telling by all players forms a Bayesian Nash equilibrium. We are also inrterested in exploring deviations from this equilibrium related to the rationality assumption.
+In the large distributed networks CryptoEconLab is studying, it is difficult to verify the truthfulness of the signals players send. When protocols can’t rely on cryptographic primitives to restrain undesirable behaviours, it is natural to look into economic games that can align participants' incentives with that of the system. We therefore wish to design games with payoff structures encouraging truth-telling as the optimal action for rational players: designs in which truth-telling by all players forms a Bayesian Nash equilibrium. We are also interested in exploring deviations from this equilibrium related to the rationality assumption.
 
 There is a parallel between this framing and that of DSIC games where truth-telling is a dominant strategy.
 
@@ -17,7 +17,7 @@ This Open Problem seeks game models describing mechanisms for incentiving truth 
 
 ## State of the Art
 
-### Current approaches within the CryptoEconLab and broader research Ecosystem
+### Current approaches within CryptoEconLab and the broader research ecosystem
 
 This Open Problem stems from our current work in the field of [algorithmic mechanism design](http://www.cs.cmu.edu/~sandholm/cs15-892F07/Algorithmic%20mechanism%20design.pdf), particularly in the area of [retrieval mining](https://retrieval.market/).   
 
