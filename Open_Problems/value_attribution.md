@@ -24,7 +24,7 @@ Impact evaluation mechanisms in dynamic, active systems require robust mechanism
 
 ## Solving this Open Problem
 
-We seek solutions to the general questions "how is value created and disseminated within a network?" and "how can we incentivize collaborative value creation in a distributed system?"
+We seek solutions to the general questions *"how is value created and disseminated within a network?"* and *"how can we incentivize collaborative value creation in a distributed system?"*
 
 Ideally, these solutions should be demonstrated in a context where public data is available, and which have appreciable relevance to scientific, open source, and Web3 value creation networks.
 
