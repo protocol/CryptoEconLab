@@ -39,12 +39,12 @@ Ideally, these solutions should be demonstrated in a context where public data i
 ## Supplementary Material
 These references illustrate some of the areas we think provide useful insights to this problem: 
 
-    - 1. [Bridging marketing theory and big data analytics: The taxonomy of marketing attribution](https://www.sciencedirect.com/science/article/abs/pii/S0268401220314523?via%3Dihub)
-    - 2. [The path to purchase and attribution modeling: Introduction to special section](https://pure.rug.nl/ws/files/81649379/The_path_to_purchase_and_attribution_modeling_Introduction_to_special_section.pdf)
-    - 4. [A taxonomy of crowdsourcing based on task complexity - Robbie T. Nakatsu, Elissa B. Grossman, Charalambos L. Iacovou, 2014](https://journals.sagepub.com/doi/10.1177/0165551514550140)
-    - 3. [Mapping the Customer Journey: A Graph-Based Framework for Online Attribution Modeling](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2343077)
-    - Working Paper:[Colored directed acyclic graphs for multi-class attribution networks](https://gateway.pinata.cloud/ipfs/Qmed7oNVNfMQftA8zvWxNS7h2JLwkwcGCuBEsAqovEqjPy)
-    - [Statistical Studies of networks of scientific papers](https://garfield.library.upenn.edu/papers/pricenetworks1965.pdf)
+1. Buhalis,D., and Volchek, K. 2021. [Bridging marketing theory and big data analytics: The taxonomy of marketing attribution](https://www.sciencedirect.com/science/article/abs/pii/S0268401220314523?via%3Dihub)
+2. Kannan, P., _et al._ 2016. [The path to purchase and attribution modeling: Introduction to special section](https://pure.rug.nl/ws/files/81649379/The_path_to_purchase_and_attribution_modeling_Introduction_to_special_section.pdf)
+3. Anderl, E., _et al._ 2013. [Mapping the Customer Journey: A Graph-Based Framework for Online Attribution Modeling](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2343077)
+4. Nakatsu, R., _et al._ 2014. [A taxonomy of crowdsourcing based on task complexity](https://journals.sagepub.com/doi/10.1177/0165551514550140)
+5. Stephenson, M., and Zargham, M. [Colored directed acyclic graphs for multi-class attribution networks](https://gateway.pinata.cloud/ipfs/Qmed7oNVNfMQftA8zvWxNS7h2JLwkwcGCuBEsAqovEqjPy)
+6. de Solla Price, D. 1965. [Statistical Studies of networks of scientific papers](https://garfield.library.upenn.edu/papers/pricenetworks1965.pdf)
 
 ### Notes on existing conversations
 
