@@ -49,7 +49,7 @@ CryptoEconLab’s current foci are:
 
 ### Open Problems
 
-We welcome discussion of our [current Open Problems](https://github.com/protocol/CryptoEconLab/tree/main/open_problems) on our [github discussion page](https://github.com/protocol/CryptoEconLab/discussions/categories/open-problems-ideas-proposals). Please join us in exploring the future of public good cryptography by contributing to the solution of current problems and posing new ones! 
+We welcome discussion of our [current Open Problems](https://github.com/protocol/CryptoEconLab/tree/main/open_problems) on our [github discussion page](https://github.com/protocol/CryptoEconLab/discussions/categories/open-problems-ideas-proposals). Please join us in exploring the future of cryptoeconomics by contributing to the solution of current problems and posing new ones! 
 
 <table>
   <thead>
@@ -62,13 +62,13 @@ We welcome discussion of our [current Open Problems](https://github.com/protocol
 
   <tbody>
     <tr>
-      <td rowspan="3">Area 1</td>
-      <td> open problem 1</td>
+      <td rowspan="3">General Incentive Research</td>
+      <td> Incentivized Network Formation</td>
       <td rowspan="3">description 1</td>
    </tr><tr>
-      <td> open problem 2</td>
+      <td> Truthful Games for Incentives under Unreliable Signals</td>
     </tr><tr>
-      <td>open problem 3</td>
+      <td>Value Attribution in a Network of Contributions</td>
      </tr>
   <tr>
       <td rowspan="3">Area 2</td>
@@ -101,10 +101,16 @@ Please join us for discussion an  anything in the CryptoEconLab extended univers
 You can vew our current slate of publications, talks, and other resources on [our lab webpage](https://research.protocol.ai/groups/cryptoeconlab/).
 
 
-## Team
+## Team 👨🏽‍🚀
 
-[Zixuan (ZX) Zhang](https://research.protocol.ai/authors/zixuan-zhang/)
+- [Zixuan (ZX) Zhang](https://research.protocol.ai/authors/zixuan-zhang/)
+- [Alex Terrazas]()
+- [Axel Cortes Cubero]()
+
+###  Hiring 🚀
+
+We are working to expand the team -- if you're a scientist or engineer interested in cryptoeconomics research, visit PL's [jobs page](https://jobs.lever.co/protocol?team=Research%20Development) to learn more and apply! 
 
 ## Contact
 
-You can reach out to us anytime with your question and interest in these projects by emailing [research@protocol.ai](mailto:research@protocol.ai)
+You can reach out to us anytime with your questions and interest in these projects by emailing [research@protocol.ai](mailto:research@protocol.ai)
