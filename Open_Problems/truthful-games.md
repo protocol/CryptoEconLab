@@ -54,12 +54,18 @@ It is expected that solutions to this Open Problem will contribute to the design
 
 ## Related Reading 
 
-These papers illustrate interesting approaches to related problems from the broader research ecosystem: 
-    - [Truthful Equilibria in Dynamic Bayesian Games - Hörner - 2015 - Econometrica](https://elischolar.library.yale.edu/cgi/viewcontent.cgi?article=3330&context=cowles-discussion-paper-series)
-    - [Truthful Mechanisms for Location Games of Dual-Role Facilities](https://www.ifaamas.org/Proceedings/aamas2019/pdfs/p1470.pdf)
-    - [Asymptotically truthful equilibrium selection in large congestion games | Proceedings of the fifteenth ACM conference on Economics and computation](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.768.8075&rep=rep1&type=pdf)
-    - [Towards truthful mechanisms for binary demand games | Proceedings of the 6th ACM conference on Electronic commerce](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.9640&rep=rep1&type=pdf)
-    - [Truthful approximation mechanisms for restricted combinatorial auctions](https://www.aaai.org/Papers/AAAI/2002/AAAI02-058.pdf)
-	- [CacheCash: A Cryptocurrency-based Decentralized Content Delivery Network](https://academiccommons.columbia.edu/doi/10.7916/d8-kmv2-7n57)([related powerpoint](https://ghadaalmashaqbeh.github.io/slides/cachecash-thesis-defense.pdf))
-- [CAPnet: A Defense Against Cache Accounting Attacks on Content Distribution Networks](https://ssl.engineering.nyu.edu/papers/almashaqbeh_capnet_cns19.pdf)
-- [Distributed Signaling Games](https://arxiv.org/pdf/1404.2861.pdf)
+ 1.  Hörner, J.,  _et al._ 2015. [Truthful Equilibria in Dynamic Bayesian Games](https://elischolar.library.yale.edu/cgi/viewcontent.cgi?article=3330&context=cowles-discussion-paper-series)
+	
+ 2. Chen, X., _et al._ 2019.  [Truthful Mechanisms for Location Games of Dual-Role Facilities](https://www.ifaamas.org/Proceedings/aamas2019/pdfs/p1470.pdf)
+	
+ 3.  Rogers, R., and Roth, A.  2013. [Asymptotically truthful equilibrium selection in large congestion games ](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.768.8075&rep=rep1&type=pdf)
+	
+ 4.  Kao, M-Y., _et al._ 2005. [Towards truthful mechanisms for binary demand games](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.9640&rep=rep1&type=pdf)
+	
+5. Mu’alem, A., and Nisan, N. 2002. [Truthful approximation mechanisms for restricted combinatorial auctions](https://www.aaai.org/Papers/AAAI/2002/AAAI02-058.pdf)
+	
+6. Almashaqbeh, G. 2019. [CacheCash: A Cryptocurrency-based Decentralized Content Delivery Network](https://academiccommons.columbia.edu/doi/10.7916/d8-kmv2-7n57) ([related powerpoint](https://ghadaalmashaqbeh.github.io/slides/abc-cryblock-2019.pdf))
+	
+7. Almashaqbeh, G., _et al._ 2019. [CAPnet: A Defense Against Cache Accounting Attacks on Content Distribution Networks](https://ssl.engineering.nyu.edu/papers/almashaqbeh_capnet_cns19.pdf)
+	
+8. Feldman, M., _et al._ 2021.[Distributed Signaling Games](https://arxiv.org/pdf/1404.2861.pdf)
