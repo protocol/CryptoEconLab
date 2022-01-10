@@ -71,6 +71,6 @@ These papers illustrate interesting approaches to related problems from the broa
 
 ### Notes on existing conversations
 
-[Github discussion]() about the Bridges of Koenigsberg Problem and cryptoeconomic networks
+[Github discussion](https://github.com/protocol/CryptoEconLab/discussions/5#discussioncomment-1942506) about the Bridges of Koenigsberg Problem and cryptoeconomic networks
 
 
