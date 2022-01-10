@@ -12,7 +12,7 @@ This Open Problem seeks novel methods for the discovery and incentivization of o
 
 ### Network Formation Games
 
-Network formation games describe the principles of interaction that determine network structure, which in turn affects economic outcomes -- including whether or not coordination will occur ([0](https://authors.library.caltech.edu/79723/1/sswp1160.pdf), [1](https://dir.ilam.ac.ir/mozafar/gt/s15/Nisan_Non-printable.pdf#page=508), [2](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.454.9588&rep=rep1&type=pdf)). Understanding the proceses that produce different network configurations is therefore important to understanding how and where value is generated in a network.
+Network formation games describe the principles of interaction that determine network structure, which in turn affects economic outcomes -- including whether or not coordination will occur ([0](https://authors.library.caltech.edu/79723/1/sswp1160.pdf), [1](https://dir.ilam.ac.ir/mozafar/gt/s15/Nisan_Non-printable.pdf#page=508), [2](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.454.9588&rep=rep1&type=pdf)). Understanding the processes that produce different network configurations is therefore important to understanding how and where value is generated in a network.
 
 Network interaction dynamics can lead self-interested entities to form large and efficient networks([1](https://dir.ilam.ac.ir/mozafar/gt/s15/Nisan_Non-printable.pdf#page=508)), but path dependencies during network formation can produce inefficient structures ([2](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.454.9588&rep=rep1&type=pdf)). Tradeoffs between efficiency and stability in determining network quality can be quantitatively modeled in a game-theoretical framework ([3](https://web.stanford.edu/~jacksonm/netsurv.pdf)), and we can evaluate network quality using measures asessing various aspects of distance/connectivity, congestion, and cost. 
 
@@ -22,9 +22,9 @@ Additionally, results from game theory and biology have demonstrated the signifi
 
 ### Known shortcomings of existing solutions
 
-Much of the literature related to this topic focuses on  observing, describing,  and modeling the dynamics of network topology emergence. There has been relatively less work on methods of influencing network topology development, particularly in a decentralized or distributed system, which is something that we are now empowered to do with digital tokens.
+Much of the literature related to this topic focuses on  observing, describing, and modeling the dynamics of network topology emergence. We hope to stimulate further work on *methods of influencing the development of specific network topologies*, particularly in a decentralized or distributed system, which is something that we are now empowered to do with digital tokens.
 
-Additionally, much of the work referenced above is framed in terms of network topology. While network topology is an important factor in deteremining network behavior, CryptoEconLab believes that there may be other parameters relevant to the function of cryptoeconomic networks that are not completely captured by models focused on topological features. We invite the community to use a broad definition of *"network structure"* in conducting its explorations of this question. 
+Additionally, much of the work referenced above is framed in terms of network topology. While network topology is an important factor in determining network behavior, CryptoEconLab believes that there may be other parameters relevant to the function of cryptoeconomic networks that are not completely captured by models focused on topological features. We invite the community to use a broad definition of *"network structure"* in conducting its explorations of this question. 
 
 ## Solving this Open Problem
 
@@ -38,7 +38,7 @@ We invite solutions investigating both topological and non-topological propertie
 
 ### What does a useful contribution to this problem look like?
 
-A good response to this Open Problem would be the creation of a general framework that can be contextualized for different use-cases, allowing us to explore *a network's reaction to changing incentives*. We are looking for description of the [leverage points](http://www.donellameadows.org/wp-content/userfiles/Leverage_Points.pdf) in a network with predictive power. What are the parameters we can tune to accomplish different objectives?
+A good response to this Open Problem would be the creation of a general framework that can be contextualized for different use-cases, allowing us to explore *a network's reaction to changing incentives*. We are looking for description of the [leverage points](http://www.donellameadows.org/wp-content/userfiles/Leverage_Points.pdf) in a network with predictive power: what are the parameters we can tune to accomplish different objectives?
 
 Your contribution might resemble ZX's [work using state space representations to model blockchain-enabled networks](https://research.protocol.ai/publications/on-modeling-blockchain-enabled-economic-networks-as-stochastic-dynamical-systems/2020zhang.pdf) or Axel's exploration of the [incentives produced by different block reward structures](https://hackmd.io/@R02mDHrYQ3C4PFmNaxF5bw/B1A_BSztt).
 
