@@ -22,9 +22,9 @@ Additionally, results from game theory and biology have demonstrated the signifi
 
 ### Known shortcomings of existing solutions
 
-Much of the literature related to this topic focuses on  observing, describing,  and modeling the dynamics of network topology emergence. There has been relatively less work on methods of influencing network topology development, particularly in a decentralized or distributed system, which is something that we are now empowered to do with digital tokens.
+Much of the literature on this topic focuses on  observing, describing, and modeling the dynamics of network topology emergence. We hope to stimulate further work on *methods of influencing the development of specific network topologies*, particularly in a decentralized or distributed system, which is something that we are now empowered to do with digital tokens.
 
-Additionally, much of the work referenced above is framed in terms of network topology. While network topology is an important factor in deteremining network behavior, CryptoEconLab believes that there may be other parameters relevant to the function of cryptoeconomic networks that are not completely captured by models focused on topological features. We invite the community to use a broad definition of *"network structure"* in conducting its explorations of this question. 
+While the discussion above is largely framed in terms of network topology, and network topology is an important factor in determining network behavior, CryptoEconLab believes that there may be other parameters relevant to the function of cryptoeconomic networks that are not completely captured by models focused on topological features. We invite the community to use a broad definition of *"network structure"* in conducting its explorations of this question. 
 
 ## Solving this Open Problem
 
