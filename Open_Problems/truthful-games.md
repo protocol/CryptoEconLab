@@ -25,7 +25,7 @@ We see parallels between this Open Problem and explorations of **truthful mechan
 
 These examples illustrate approaches to related problems under additional constraints, such as polynomial mechanism runtime and feasibility within a global budget. 
 
-The design of the [CacheCash decentralized CDN network](https://academiccommons.columbia.edu/doi/10.7916/d8-kmv2-7n57) includes a defense against cache accounting attacks that rests partially upon making honesty more profitable than cheating. Game designs that make dishonest behaviour costly arem a potential approach to this problem.
+The design of the [CacheCash decentralized CDN network](https://academiccommons.columbia.edu/doi/10.7916/d8-kmv2-7n57) includes a defense against cache accounting attacks that rests partially upon making honesty more profitable than cheating. Game designs that make dishonest behaviour costly are a potential approach to this problem.
 
 ### Known shortcomings of existing solutions
 
