@@ -105,7 +105,7 @@ You can vew our current slate of publications, talks, and other resources on [ou
 
 - [Zixuan (ZX) Zhang](https://research.protocol.ai/authors/zixuan-zhang/)
 - [Alex Terrazas]()
-- [Axel Cortes Cubero]()
+- [Axel Cortés Cubero]()
 
 ###  Hiring 🚀
 
