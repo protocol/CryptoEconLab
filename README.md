@@ -63,14 +63,16 @@ We welcome discussion of our [current Open Problems](https://github.com/protocol
   <tbody>
     <tr>
       <td rowspan="3">General Incentive Research</td>
-      <td> Incentivized Network Formation</td>
-      <td rowspan="3">description 1</td>
+      <td> 
+<a href="https://github.com/protocol/CryptoEconLab/blob/main/Open_Problems/incentivized_network_formation.md">Incentivized Network Formation</a>
+</td>
+      <td rowspan="3">General problems related to incentivizing behavior in cryptoeconomic networks</td>
    </tr><tr>
-      <td> Truthful Games for Incentives under Unreliable Signals</td>
+      <td> <a href="https://github.com/protocol/CryptoEconLab/blob/main/Open_Problems/truthful-games.md">Truthful Games for Incentives under Unreliable Signals</a></td>
     </tr><tr>
-      <td>Value Attribution in a Network of Contributions</td>
+      <td><a href="https://github.com/protocol/CryptoEconLab/blob/main/Open_Problems/value_attribution.md">Value Attribution in a Network of Contributions</a></td>
      </tr>
-  <tr>
+       <!--<tr>
       <td rowspan="3">Area 2</td>
       <td>open problem 1</td>
       <td rowspan="3">description 2</td>
@@ -78,7 +80,7 @@ We welcome discussion of our [current Open Problems](https://github.com/protocol
       <td>open problem 2</td>
     </tr><tr>
       <td>open problem 3</td>
-    </tr>
+    </tr>-->
   </tbody>
 </table>
 
