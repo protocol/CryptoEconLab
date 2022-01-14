@@ -1,7 +1,8 @@
 <p align="center">
   <a href="https://research.protocol.ai/research/groups/cryptoeconlab/" title="CryptoEconLab">
-    <img src="https://research.protocol.ai/groups/cryptoeconlab/icon.png" width="140" />
+    <img src="https://user-images.githubusercontent.com/25029171/149471901-e6ea751d-b030-4bf3-bb2e-f1ac54c14db2.png" width="140" />
   </a>
+
 </p>
 
 # CryptoEconLab
