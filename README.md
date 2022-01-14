@@ -50,7 +50,7 @@ CryptoEconLab’s current foci are:
 
 ### Open Problems
 
-We welcome discussion of our [current Open Problems](https://github.com/protocol/CryptoEconLab/tree/main/Open_Problems) on our [github discussion page](https://github.com/protocol/CryptoEconLab/discussions/5). Please join us in exploring the future of cryptoeconomics by contributing to the solution of current problems and posing new ones! 
+We welcome discussion of our [current Open Problems](https://github.com/protocol/CryptoEconLab/tree/main/Open_Problems) on our [github discussion page](https://github.com/protocol/CryptoEconLab/discussions/categories/ideas-open-problems-and-proposals). Please join us in exploring the future of cryptoeconomics by contributing to the solution of current problems and posing new ones! 
 
 <table>
   <thead>
