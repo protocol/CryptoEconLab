@@ -24,7 +24,7 @@
 
 ## `CryptoEconLab`
 
-Cryptoeconomics is an emerging field of economic coordination games in cryptographically secured peer-to-peer networks. As an interdisciplinary study, cryptoeconomics involves a constellation of knowledge including computer science, network science, statistics, economics, and system engineering. In an increasingly networked and open world, cryptoeconomics will play a bigger role in coordinating human and machine activities and building a better future.
+Cryptoeconomics is an emerging field of economic coordination games in cryptographically secured peer-to-peer networks. As an interdisciplinary study, cryptoeconomics involves a constellation of knowledge including computer science, network science, statistics,psychology, decision neuroscience, economics, and system engineering. In an increasingly networked and open world, cryptoeconomics will play a bigger role in coordinating human and machine activities and building a better future.
 
 ### Mission & Vision
 
