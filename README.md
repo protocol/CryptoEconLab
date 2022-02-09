@@ -108,7 +108,6 @@ You can vew our current slate of publications, talks, and other resources on [ou
 
 - [Zixuan (ZX) Zhang](https://research.protocol.ai/authors/zixuan-zhang/)
 - Alex Terrazas
-<!--- [Alex Terrazas](https://research.protocol.ai/authors/alex-terrazas)-->
 - [Axel Cortés Cubero](https://research.protocol.ai/authors/axel-cortes-cubero)
 - Tom Mellan
 
