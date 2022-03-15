@@ -110,9 +110,8 @@ These questions might be explored in the context of modeling [Filecoin circulati
     
 5.  [EIP1559 empirical analysis](https://arxiv.org/pdf/2201.05574.pdf)
 
----
 
-#### Project area 2: Using ML to model the Filecoin network
+#### Project area 2: using machine learning to model the Filecoin network
 
 The Filecoin network has a near-perfect record of storage provider state, with sector events across the network reported at 30-second intervals. Despite this wealth of data, our understanding is still restricted by the difficulty of interpreting time-changing interactions between pairs of nodes. Yet understanding mutualism and reciprocity, rent-seeking, community structure, sparsity and degree heterogeneity on the network are critical to building a deep understanding of cryptoeconomic dynamics. 
 
@@ -123,9 +122,8 @@ We seek to employ machine learning approaches to model this data-rich system. We
     
 2. [GNNs: A review of methods and applications](https://arxiv.org/ftp/arxiv/papers/1812/1812.08434.pdf)
 
---- 
 
-#### Project  area 3: Implementing optimal control in a blockchain system
+#### Project  area 3: implementing optimal control in a blockchain system
 
 This  problem is about using online optimal control to update tokenomic parameters in a systematic way.Filecoin mainnet has been live for over a year. The decentralized network relies on key parameters to ensure stable dynamics and agent alignment through incentivized behaviors. One challenge is online optimization of parameters that define the mechanistic structure of the protocol. On a technical level, this is akin to tuning the engine of a 747 while it’s off the ground, and leads to a classic high-stakes exploration/exploitation trade-off[1].  
 
@@ -141,9 +139,8 @@ Work on this project may benefit from considering how the lessons of the optimal
 
 4. ["Yearn Finance Changes Up its Tokenomics and YFI Soars 85%"](https://thedefiant.io/yearn-tokenomics-change/)
 
----
 
-#### Project  area 4: Injecting stochasticity into Web3 game environments
+#### Project  area 4: injecting stochasticity into Web3 game environments
 
 This project sits at the intersection of web3 games, stochastic processes and tokenomics. Axie Infinity breeding creates offspring distributed as a birth-death process in which each generation gives rise to exactly two offspring, and effective death occurs according to sterilization after seven breeding cycles to avoid token issuance inflation[2]. One generalization is to introduce stochasticity to breeding, as we see in biology. In the simplest instance the offspring distribution could be Poisson distributed. This specific case often produces branching dynamics with a closed-form solution for the mean and variance of the population, for which the tokenomic scheduling could in theory be specified analytically. 
 
