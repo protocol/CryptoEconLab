@@ -87,11 +87,10 @@ We welcome discussion of our [current Open Problems](https://github.com/protocol
 
 ### Projects 
 
-In addition to our current [Open Problems],(https://github.com/protocol/CryptoEconLab/tree/main/Open_Problems) CryptoEconLab has developed a set of research questions that can be used to develop an MSc thesis or PhD  industry-experience project for students in computer science, statistics, complexity, economics or related areas. These questions canalso serve as the basis for independent postdoctoral research.
+In addition to our current [Open Problems](https://github.com/protocol/CryptoEconLab/tree/main/Open_Problems), CryptoEconLab has developed a set of research questions that can be used to develop an MSc thesis or PhD  industry-experience project for students in computer science, statistics, complexity, economics or related areas. These questions canalso serve as the basis for independent postdoctoral research.
 
 These project ideas can be discussion on the [CryptoEconLab Discussion Board](https://github.com/protocol/CryptoEconLab/discussions), and inquiries about poortunities for [grant-supported research] can be directed to [research-grants@protocol.ai](mailto:research@protocol.ai).
 
---- 
 
 #### Project  area 1: Scaling structure and network stability
 Self-organized criticality provides a framework to reason about relaxation events with burst-like scale invariant power laws[1]. It’s the common thread across complex systems that links the dynamics of the natural world, from rainfall (think relaxations in the sky!) and earthquakes, to social network tweet storms[2], and rare events in volatile financial markets[3]. 
@@ -101,16 +100,15 @@ The Filecoin decentralized network generates millions of unique events per day. 
 These questions might be explored in the context of modeling [Filecoin circulating supply](https://filecoin.io/blog/filecoin-circulating-supply/), understanding the dynamic adjustment of base fees, and examining relationships between storage deal state transitions and other protocol activities. For example, Filecoin uses EIP1559-style[4] gas fees, but how effective are they in practice at regulating volatility[5] in the network, and can a more effective structure be designed?
 
 ##### Related resources
-1.  Rain: Relaxations in the Sky. [https://arxiv.org/pdf/cond-mat/0204109.pdf](https://arxiv.org/pdf/cond-mat/0204109.pdf) 
+1.  [Rain: Relaxations in the Sky](https://arxiv.org/pdf/cond-mat/0204109.pdf) 
     
-2.  A tutorial on Hawkes Processes for Events in Social Media [https://arxiv.org/pdf/1708.06401.pdf](https://arxiv.org/pdf/1708.06401.pdf) 
+2.  [A tutorial on Hawkes Processes for events in social media](https://arxiv.org/pdf/1708.06401.pdf) 
     
-3.  State dependent Hawkes processes and their application to limit order book modelling [https://arxiv.org/abs/1809.08060](https://arxiv.org/abs/1809.08060) 
+3.  [State dependent Hawkes processes and their application to limit order book modelling](https://arxiv.org/abs/1809.08060) 
     
-4.  ETH EIP1559 [https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1559.md](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1559.md) 
+4.  [ETH EIP1559](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1559.md) 
     
-
-5.  EIP1559 empirical analysis [https://arxiv.org/pdf/2201.05574.pdf](https://arxiv.org/pdf/2201.05574.pdf)
+5.  [EIP1559 empirical analysis](https://arxiv.org/pdf/2201.05574.pdf)
 
 ---
 
@@ -121,10 +119,9 @@ The Filecoin network has a near-perfect record of storage provider state, with s
 We seek to employ machine learning approaches to model this data-rich system. We are particularly interested in approaches involving models furnished with the appropriate inductive biases,  e.g. mutually self-exciting temporal models [1] and deep graphical neural nets [2]. We believe that machine learning may be particularly useful in modeling the Filecoin [sector lifecycle](https://spec.filecoin.io/systems/filecoin_mining/sector/lifecycle/) and develop optimal responses to network fault events.
 
 ##### Related resources
-1.  Modelling sparsity, heterogeneity, reciprocity, and community structure in temporal interaction data [https://proceedings.neurips.cc/paper/2018/file/160c88652d47d0be60bfbfed25111412-Paper.pdf](https://proceedings.neurips.cc/paper/2018/file/160c88652d47d0be60bfbfed25111412-Paper.pdf) 
+1.  [Modelling sparsity, heterogeneity, reciprocity, and community structure in temporal interaction data](https://proceedings.neurips.cc/paper/2018/file/160c88652d47d0be60bfbfed25111412-Paper.pdf) 
     
-
-2. GNNs: A review of methods and applicaitons [https://arxiv.org/ftp/arxiv/papers/1812/1812.08434.pdf](https://arxiv.org/ftp/arxiv/papers/1812/1812.08434.pdf)
+2. [GNNs: A review of methods and applications](https://arxiv.org/ftp/arxiv/papers/1812/1812.08434.pdf)
 
 --- 
 
@@ -135,14 +132,14 @@ This  problem is about using online optimal control to update tokenomic paramete
 Work on this project may benefit from considering how the lessons of the optimal control literature can be applied to blockchains. We seek to develop an understanding of what optimal search on a live mainnet looks like, and how decisions from a computational protocol might be combined with a human governance layer. This project is about developing an optimal theoretical framework, but potentially has a strong practical element – deciding when and by how much to update blockchain network parameters is becoming a bigger issue[2,3,4] as chains mature. 
 
 ##### Related resources
-1.  A tutorial on Thompson Sampling [https://web.stanford.edu/~bvr/pubs/TS_Tutorial.pdf](https://web.stanford.edu/~bvr/pubs/TS_Tutorial.pdf) 
+1.  [A tutorial on Thompson Sampling](https://web.stanford.edu/~bvr/pubs/TS_Tutorial.pdf) 
     
-2.  EIP-1559 [https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1559.md](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1559.md) 
+2.  [EIP-1559](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1559.md) 
     
-3.  [https://doseofdefi.substack.com/p/tokenomics-is-back-thanks-to-crv?utm_source=url](https://doseofdefi.substack.com/p/tokenomics-is-back-thanks-to-crv?utm_source=url) 
+3.  ["Tokenomics is back (thanks to CRV)"](https://doseofdefi.substack.com/p/tokenomics-is-back-thanks-to-crv?utm_source=url) 
     
 
-4. [https://thedefiant.io/yearn-tokenomics-change/](https://thedefiant.io/yearn-tokenomics-change/)
+4. ["Yearn Finance Changes Up its Tokenomics and YFI Soars 85%"](https://thedefiant.io/yearn-tokenomics-change/)
 
 ---
 
@@ -153,7 +150,7 @@ This project sits at the intersection of web3 games, stochastic processes and to
 Some interesting questions concern how far the idea of injecting randomness be pushed;  the behavioral psychology context of randomized rewards;  the consequences in terms of the burning and minting schedule for token design; and, given a such an issuance schedule, discovering what a 'good' outcome looks like.
 
 ##### Related resources
-1. [https://whitepaper.axieinfinity.com/gameplay/breeding](https://whitepaper.axieinfinity.com/gameplay/breeding)
+1. [Axie Infinity whitepaper: breeding](https://whitepaper.axieinfinity.com/gameplay/breeding)
 
 ### RFPs
   
