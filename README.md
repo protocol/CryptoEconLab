@@ -89,7 +89,7 @@ We welcome discussion of our [current Open Problems](https://github.com/protocol
 
 In addition to our current [Open Problems](https://github.com/protocol/CryptoEconLab/tree/main/Open_Problems), CryptoEconLab has developed a set of research questions that can be used to develop an MSc thesis or PhD  industry-experience project for students in computer science, statistics, complexity, economics or related areas. These questions can also serve as the basis for independent postdoctoral research.
 
-These project ideas can be discused on the [CryptoEconLab Discussion Board](https://github.com/protocol/CryptoEconLab/discussions); inquiries about opportunities for [grant-supported research] can be directed to [research-grants@protocol.ai](mailto:research@protocol.ai).
+These project ideas can be discused on the [CryptoEconLab Discussion Board](https://github.com/protocol/CryptoEconLab/discussions); inquiries about opportunities for [grant-supported research](https://grants.protocol.ai/) can be directed to [research-grants@protocol.ai](mailto:research@protocol.ai).
 
 
 #### Project  area 1: Scaling structure and network stability
