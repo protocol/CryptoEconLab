@@ -17,14 +17,14 @@ from votes import Votes
 import pandas as pd
 
 
-def dataPreprocess(height:int,sectreString:str):
+def dataPreprocess(height:int,secretString:str):
 
 
 
 
     #connects to sentinel
     print('connecting to sentinel..')
-    db = utils.connect_to_sentinel(secret_string=sectreString)
+    db = utils.connect_to_sentinel(secret_string=secretString)
     #gets market deals
     print('getting list of deals...')
     listDeals=utils.get_market_deals(database=db, height=height)
