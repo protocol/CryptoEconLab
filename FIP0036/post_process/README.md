@@ -17,10 +17,15 @@ The main file is main.py. This file, essentially, processes each vote by taking 
 This process is contained in the `counting.py` module. The rest of the files are:
 
 `sentinel.py`: module to connect to the sentinel database. IT REQUIRES A CONNECTION STRING STORED AS `SecretString.txt` IN THIS FOLDER.
+
 `datautils.py`: module to query the sentinel database and perform several table-lookup operations
+
 `votes.py`: module with vote data. It connects to the FIlPoll API and queries the up-to-date list of votes
+
 `counting.py`: vpte class.performs the algorithm above for each vote
+
 `groups.py`: group class. 
+
 `preprocess.py`: preprocess chain data.
 
 
