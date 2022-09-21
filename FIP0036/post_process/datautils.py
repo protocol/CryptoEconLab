@@ -246,7 +246,7 @@ def get_owned_SPs(database: sentinel,  height: int):
         ORDER BY "height" DESC
        """.format(height)
         miner_infos = database.customQuery(QUERY)
-        miner_infos=miner_infos.sort_values(by='height')
+        miner_infos=miner_infos.sort_values(by='height', ascending=False)
         miner_infos=miner_infos.groupby(by='miner_id').head(1)
 
         miner_infos.to_csv('datasets/miner_infos.csv')
@@ -328,7 +328,7 @@ def get_all_power_actors(database: sentinel, height: int):
 
     """
     QUERY = """
-            SELECT DISTINCT "miner_id", "height", "state_root", "raw_byte_power", "quality_adj_power"
+            SELECT DISTINCT "miner_id", "height", "raw_byte_power", "quality_adj_power"
             FROM "visor"."power_actor_claims"            
             WHERE "height"<={}
             ORDER BY "height" DESC
@@ -393,9 +393,10 @@ def get_active_power_actors(database: sentinel, height: int):
 
 
 
-def get_power(miner_id:str, list_of_powers:pd.core.frame.DataFrame):
+def get_power(miner_id:str, list_of_powers:pd.core.frame.DataFrame):    
     try:
         power=list_of_powers[list_of_powers['miner_id']==miner_id]['raw_byte_power'].values[0]
+
     except:
         power=0
     return power
@@ -518,6 +519,6 @@ if __name__ == "__main__":
     HEIGHT = 2162760
 
     db = connect_to_sentinel(secret_string="SecretString.txt")
-    locked=get_miner_locked_funds(database=db, height=HEIGHT)
+    #locked=get_miner_locked_funds(database=db, height=HEIGHT)
     
     # msd=get_miner_sector_deals(database=db,miner_id=minerId,height=HEIGHT)
