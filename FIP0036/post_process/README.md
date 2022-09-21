@@ -16,7 +16,8 @@ The main file is main.py. This file, essentially, processes each vote by taking 
 
 This process is contained in the `counting.py` module. The rest of the files are:
 
-`sentinel.py`: module to connect to the sentinel database. IT REQUIRES A CONNECTION STRING STORED AS `SecretString.txt` IN THIS FOLDER.
+`sentinel.py`: module to connect to the sentinel database. IT REQUIRES A VALID CONNECTION STRING STORED AS `SecretString.txt` IN THIS FOLDER. Alternatively, you can download the required datasets from here https://drive.google.com/drive/folders/1HFdZClf2KjtiUbTBy6VkvTlw6dVTJtEJ?usp=sharing
+ and pass an empty connection string.
 
 `datautils.py`: module to query the sentinel database and perform several table-lookup operations
 
