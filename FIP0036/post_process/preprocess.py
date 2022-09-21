@@ -41,7 +41,8 @@ def dataPreprocess(height:int,secretString:str):
     
     
     print('getting list of core devs...')
-    list_core_devs=list(pd.read_csv('datasets/listOfCoreDevs.csv'))
+   # list_core_devs=list(pd.read_csv('datasets/listOfCoreDevs.csv'))
+    list_core_devs = []
 
     
     #gets list of votes
