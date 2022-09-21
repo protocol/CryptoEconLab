@@ -109,7 +109,7 @@ def run(export_path:str):
              'id': groups_of_voters[gr].groupName}
             
             
-        tallied.append(tallied)
+        tallied.append(tt)
         
     all_votes_df=pd.DataFrame(all_votes)
     tallied=pd.DataFrame(tallied)
