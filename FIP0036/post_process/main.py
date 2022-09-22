@@ -12,7 +12,6 @@ from counting import countVote
 import pandas as pd
 
 
-
 def run(export_path:str):
     
     '''
@@ -117,11 +116,14 @@ def run(export_path:str):
     all_votes_df.to_csv(export_path+'/all_votes.csv')
     list_of_votes.to_csv(export_path+'/raw_votes.csv')
     tallied.to_csv(export_path+'/tallied_votes.csv')
+    signatures.to_csv(export_path+'/signatures.csv')
 
     
     
     
 if __name__=='__main__':
-    PATH='../Public_Data'
-    run(export_path=PATH)
+    import os
+    file_dir = os.path.dirname(os.path.realpath(__file__))
+    output_dir = os.path.abspath(os.path.join(file_dir, "..", "Public_Data"))
+    run(export_path=output_dir)
     

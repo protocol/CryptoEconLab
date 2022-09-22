@@ -16,11 +16,14 @@ def countVote(vote,groups_of_voters,datasets,signatures):
     list_of_addresses_and_ids=datasets['addresses']
     list_of_core_devs=datasets['core']
     list_of_powers=datasets['powers']
+    list_long_short=datasets['longShort']
+
     
     signature=json.loads(vote["signature"])
     X = signature["signer"]
     signature=utils.addShortAndLongId(signature=signature,
-                list_of_addresses_and_ids=list_of_addresses_and_ids)
+                list_of_addresses_and_ids=list_of_addresses_and_ids,
+                longShort=list_long_short)
     #
     # checks if it;s a core dev and adds headcount
     #
@@ -36,7 +39,8 @@ def countVote(vote,groups_of_voters,datasets,signatures):
     #
     #exists = utils.is_in_list(X, list_of_addresses)
     #if exists:
-    groups_of_voters["token"].validateAndAddVote(signature)
+    if vote['balance']>0:
+        groups_of_voters["token"].validateAndAddVote(signature)
     #
     # Iterate over all deals, adding up the bytes of deals where X is the proposer (client)
     #  
@@ -44,7 +48,7 @@ def countVote(vote,groups_of_voters,datasets,signatures):
                                              user_id=signature['short'],
                                              side='client_id') 
     #print('length {}'.format(len(dealsForX)))
-    totalBytes = dealsForX["unpadded_piece_size"].sum()
+    totalBytes = dealsForX["padded_piece_size"].sum()
     # checks that address X has not voted and has >0 bytes as a client
     if totalBytes > 0:
         groups_of_voters["client"].validateAndAddVote(signature,amount=totalBytes)
@@ -52,7 +56,7 @@ def countVote(vote,groups_of_voters,datasets,signatures):
     # Iterate over all SPs, checking if X is the owner / worker of an SP Y
     #
     
-    
+    signature['client_bytes']=totalBytes
     
     # checks if this is an owner account, and overwrites worker account vote if it is
     #--------------------------------------------------------------------------
@@ -71,8 +75,6 @@ def countVote(vote,groups_of_voters,datasets,signatures):
         #if otherID_long is in the address that alread voted, remove
         for gr in ['capacity','deal']:
             
-            
-            
             if (groups_of_voters[gr].has_voted(otherID_long)) and (otherID_long!=signature['signer']):
                 print(' ')
                 print('overwritting '+otherID_long)
@@ -80,8 +82,9 @@ def countVote(vote,groups_of_voters,datasets,signatures):
             
     #--------------------------------------------------------------------------
     
-    SPs= utils.get_owners_and_workers(list_of_miners, signature['short'])  
-    #
+    SPs= utils.get_owners_and_workers(list_of_miners, signature['short'])
+
+    # #
     # Add Y's raw bytes to the SP capacity vote (Group 2)
     #
     total_power_SPs=0
@@ -106,7 +109,7 @@ def countVote(vote,groups_of_voters,datasets,signatures):
         
         
     
-        totalBytesY += dealsByY["unpadded_piece_size"].sum()
+        totalBytesY += dealsByY["padded_piece_size"].sum()
     #
     # from Add Y's raw bytes to the SP capacity vote (Group 2)
     #
@@ -115,10 +118,14 @@ def countVote(vote,groups_of_voters,datasets,signatures):
     groups_of_voters["capacity"].validateAndAddVote(signature,amount=total_power_SPs,other_info=other_info)
     groups_of_voters["deal"].validateAndAddVote(signature,amount=totalBytesY)
     
-    
-    
+    signature['capcity_bytes']=total_power_SPs
+    signature['deal_bytes']=totalBytesY
+    vote_out=signature['capcity_bytes']+signature['deal_bytes']+signature['client_bytes']
+
+    signature['diff']=int(signature['power'])-vote_out
     signatures.append(signature)
-    
+    # import pdb
+    # pdb.set_trace()
     
     return groups_of_voters,signatures
     

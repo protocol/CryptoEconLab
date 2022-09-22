@@ -10,7 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from sentinel import sentinel
-
+import os
 
 
 
@@ -40,7 +40,7 @@ def longFromShort(Id:str,list_of_addresses_and_ids:list):
          long=None
     return long
     
-def getShortId(signature:dict,list_of_addresses_and_ids:list):
+def getShortId(signature:dict,list_of_addresses_and_ids:list,longShort:list):
     '''
     gets short id from long-format address
 
@@ -57,15 +57,31 @@ def getShortId(signature:dict,list_of_addresses_and_ids:list):
 
     '''
     
-    
+    A=signature['address']
     X=signature['signer']
-    try:
-        signature['short']=list_of_addresses_and_ids[
-            list_of_addresses_and_ids['address']==X
-            ]['id'].values[0]
-    except:
- 
-        signature['short']=None
+    if A[:2]=='f0': # if it start with f0
+        signature['short']=A
+        
+    else:
+            
+        try:
+            signature['short']=longShort[longShort['long']==X]['short'].values[0][:-1]
+   
+        except:
+            
+            try:
+                signature['short']=list_of_addresses_and_ids[
+                list_of_addresses_and_ids['address']==X
+                ]['id'].values[0]
+            except:
+                #finds it onchain from lotus
+                try:
+                    
+                    cmd='/usr/local/bin/lotus state lookup   '+X
+                    signature['short']=os.popen(cmd).read()
+                except:
+                    print('error pinging from lotus. Make sure that you have initialized lotus daemon and that you are using the right path for lotus')
+                    
         
     return signature
     
@@ -73,34 +89,13 @@ def getShortId(signature:dict,list_of_addresses_and_ids:list):
   
 
 
-def addShortAndLongId(signature:dict,list_of_addresses_and_ids:list):
+def addShortAndLongId(signature:dict,list_of_addresses_and_ids,longShort):
     
-    X=signature['signer']
+     
     
-    
-    if 'f0'==X[:2]:  # checks if starts with f0. If if does, signature is shortformat
-        try:
-           signature['short']=X
-           signature['long']=longFromShort()
-           
-           
-           list_of_addresses_and_ids[
-               list_of_addresses_and_ids['id']==X
-               ]['address'].values[0]
-        except:
-            signature['long']=None
-               
-    else:
-        try:
-            signature['long']=X
-            signature['short']=list_of_addresses_and_ids[
-                list_of_addresses_and_ids['address']==X
-                ]['id'].values[0]
-            
-            
-        except:
-            signature['short']=None
-        
+    signature['long']=signature['signer']
+    signature=getShortId(signature, list_of_addresses_and_ids,longShort)
+
     return signature
     
     
@@ -154,7 +149,7 @@ def connect_to_sentinel(secret_string: str):
     # initializes the class
     db = sentinel(NAME_DB)
     return db
-def get_miner_locked_funds(database: sentinel, height: int):
+def get_miner_locked_funds(database: sentinel or None, height: int):
     
     
     try:
@@ -180,7 +175,7 @@ def get_miner_locked_funds(database: sentinel, height: int):
     
 
 
-def get_miner_sector_deals(database: sentinel, miner_id: str, height: int):
+def get_miner_sector_deals(database: sentinel or None, miner_id: str, height: int):
     """
     Returns a pandas dataframe with information regarding sector deals for
     miner with `miner_id` updated until `height`
@@ -214,7 +209,7 @@ def get_miner_sector_deals(database: sentinel, miner_id: str, height: int):
     return sector_deals
 
 
-def get_owned_SPs(database: sentinel,  height: int):
+def get_owned_SPs(database: sentinel or None,  height: int):
     """
     Get SP addresses owned by or with worker id `owner_id` up until `height`
 
@@ -303,6 +298,8 @@ def get_owners_and_workers(data:pd.core.frame.DataFrame,
     SPs=pd.DataFrame([SPs,labels]).T
     
     SPs.columns=['miner_id','type']
+    # import pdb
+    # pdb.set_trace()
     
     return SPs['miner_id'].unique()
     
@@ -310,7 +307,7 @@ def get_owners_and_workers(data:pd.core.frame.DataFrame,
 
 
 
-def get_all_power_actors(database: sentinel, height: int):
+def get_all_power_actors(database: sentinel or None, height: int):
     """
     generates a list of all miners with their power QAP and RBP
 
@@ -337,7 +334,7 @@ def get_all_power_actors(database: sentinel, height: int):
     return power_actors
 
 
-def get_addresses(database: sentinel,height:int):
+def get_addresses(database: sentinel or None,height:int):
     """
     Parameters
     ----------
@@ -363,7 +360,7 @@ def get_addresses(database: sentinel,height:int):
     return actors
 
 
-def get_active_power_actors(database: sentinel, height: int):
+def get_active_power_actors(database: sentinel or None, height: int):
     """
     generates a list of all active (with deals expiring after max_height) miners with their power QAP and RBP
 
@@ -430,18 +427,22 @@ def get_market_deals_from_id(market_deals:pd.core.frame.DataFrame,
     return df
 
 
-def get_market_deals(database: sentinel,  height: int):
+def get_market_deals(database: sentinel or None,  height: int):
     
 
     
     try:
         deals=pd.read_csv('datasets/market_deals.csv')
     except:
+    
+    
             
         
         print('getting list of market deal proposals...')
+        
+     
 
-        query='''SELECT DISTINCT "piece_cid",  "unpadded_piece_size",
+        query='''SELECT DISTINCT "piece_cid",  "padded_piece_size",
         "client_id", "provider_id","height" 
         FROM "visor"."market_deal_proposals"
         WHERE "height"<={} AND "end_epoch">={} AND "start_epoch"<={}'''.format(height,height,height)
@@ -472,7 +473,7 @@ def toObs(group,name:str):
 
 
 
-def get_balances(database: sentinel,  height: int):
+def get_balances(database: sentinel or None,  height: int):
     '''
     
     return a list of balances up-untila centain height
@@ -509,16 +510,40 @@ def get_balances(database: sentinel,  height: int):
         
     return balances
     
-
-
-
-
-if __name__ == "__main__":
-    minerId = "f01740934"
-
-    HEIGHT = 2162760
-
-    db = connect_to_sentinel(secret_string="SecretString.txt")
-    #locked=get_miner_locked_funds(database=db, height=HEIGHT)
+def get_msigs(database: sentinel or None,  height: int):
     
-    # msd=get_miner_sector_deals(database=db,miner_id=minerId,height=HEIGHT)
+    ''' returns list of msigs with threshold >1'''
+    
+    QUERY='''SELECT * FROM "visor"."multisig_approvals"
+    WHERE "height"<={}'''.format(height)
+    
+    try:
+        balances=pd.read_csv('datasets/msigs.csv')
+    except:
+                
+        
+        print('getting list of msigs...')
+
+        query='''SELECT * FROM "visor"."multisig_approvals"
+        WHERE "height"<={}'''.format(height)
+        
+        msig= database.customQuery(query)
+        msigs=msig.drop(columns=['state_root','message','method','gas_used','transaction_id'])
+        msigG=msigs.sort_values(by='height',ascending=False).groupby(by='multisig_id').head(1)
+        msigGM=msigG[msigG['threshold']>1]
+        msigGM.to_csv('datasets/msigs.csv')
+        
+    return msigGM
+
+
+
+# if __name__ == "__main__":
+#     minerId = "f01740934"
+
+#     HEIGHT = 2162760
+
+#     db = connect_to_sentinel(secret_string="SecretString.txt")
+#     msigs=get_msigs(db,HEIGHT)
+#     #locked=get_miner_locked_funds(database=db, height=HEIGHT)
+    
+#     # msd=get_miner_sector_deals(database=db,miner_id=minerId,height=HEIGHT)

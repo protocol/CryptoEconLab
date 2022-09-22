@@ -96,7 +96,8 @@ class groups:
         
             
         
-        if self.is_ellegible(signature["signer"]):
+        if self.is_ellegible(signature["address"]):
+            
         
             if amount is not None:
                 quantity=amount
@@ -113,7 +114,8 @@ class groups:
 
 
         else:
-            self.votedMoreThanOnce.append("signer")
+             self.votedMoreThanOnce.append("signer")
+             
     
             
     
@@ -219,50 +221,50 @@ class groups:
 
              
 
-if __name__=='__main__':
+# if __name__=='__main__':
     
-    OUTCOMES=['Approve','Reject','Abstain']
-    GROUPS=['deals','capacity','clients','tokens','devs']
-    N_VOTES=100
-    deals=groups(1)
-    capacity=groups(2)
-    clients=groups(3)
-    tokens=groups(4)
-    devs=groups(5)
+#     OUTCOMES=['Approve','Reject','Abstain']
+#     GROUPS=['deals','capacity','clients','tokens','devs']
+#     N_VOTES=100
+#     deals=groups(1)
+#     capacity=groups(2)
+#     clients=groups(3)
+#     tokens=groups(4)
+#     devs=groups(5)
     
-    voters={
-        "deals":deals,
-        "capacity":capacity,
-        "clients":clients,
-        "tokens":tokens,
-        "devs":devs}
+#     voters={
+#         "deals":deals,
+#         "capacity":capacity,
+#         "clients":clients,
+#         "tokens":tokens,
+#         "devs":devs}
 
 
     
-    for i in range(N_VOTES):
-        for gr in GROUPS:
-            vote=np.random.choice(OUTCOMES)
-            address='f2_sample_'+str(i)+'_'+gr
-            if gr=='tokens':
-                quantity=np.random.randint(int(1e18))
-            elif gr=='deals' or gr=='clients' or gr=='capacity':
-                quantity=np.random.randint(int(1e15),int(1e17))
-            else:
-                quantity=1
+#     for i in range(N_VOTES):
+#         for gr in GROUPS:
+#             vote=np.random.choice(OUTCOMES)
+#             address='f2_sample_'+str(i)+'_'+gr
+#             if gr=='tokens':
+#                 quantity=np.random.randint(int(1e18))
+#             elif gr=='deals' or gr=='clients' or gr=='capacity':
+#                 quantity=np.random.randint(int(1e15),int(1e17))
+#             else:
+#                 quantity=1
 
-            voters[gr].votes.append(vote)
-            voters[gr].address.append(address)
-            voters[gr].quantity.append(quantity)
+#             voters[gr].votes.append(vote)
+#             voters[gr].address.append(address)
+#             voters[gr].quantity.append(quantity)
 
-#Tests the tallying of the votes#
-    for gr in GROUPS:
-        print('###################')
-        print('Counting '+str(gr))
-        print('###################')
-        print('')
-        print('')
+# #Tests the tallying of the votes#
+#     for gr in GROUPS:
+#         print('###################')
+#         print('Counting '+str(gr))
+#         print('###################')
+#         print('')
+#         print('')
         
-        voters[gr].count()
+#         voters[gr].count()
         
         print('')
     

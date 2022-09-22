@@ -17,14 +17,18 @@ from votes import Votes
 import pandas as pd
 
 
-def dataPreprocess(height:int,secretString:str):
+def dataPreprocess(height:int,secretString:str or None):
 
 
 
-
-    #connects to sentinel
-    print('connecting to sentinel..')
-    db = utils.connect_to_sentinel(secret_string=secretString)
+    if secretString is None:
+        db=None
+        #connects to sentinel
+    else:
+        print('connecting to sentinel..')
+        db = utils.connect_to_sentinel(secret_string=secretString)
+        
+        
     #gets market deals
     print('getting list of deals...')
     listDeals=utils.get_market_deals(database=db, height=height)
@@ -43,20 +47,38 @@ def dataPreprocess(height:int,secretString:str):
     print('getting list of core devs...')
     list_core_devs=list(pd.read_csv('datasets/listOfCoreDevs.csv'))
 
+
+    print('getting list of mappings...')
+    list_of_mappings=pd.read_csv('datasets/longShort.csv')
+
     
     #gets list of votes
     
     print('getting list of votes...')
+    try:
     
-    votes=Votes() ; votes.update()
-    listVotes=votes.votes
+        votes=Votes() ; votes.update()
+        listVotes=votes.votes
+        N_votes=len(listVotes)
+        
+        #deduplicates votes
+        listVotes=[listVotes.iloc[n] for n in range(N_votes) if listVotes['address'].iloc[n][:2]!='f0']
+
+        listVotes=pd.DataFrame(listVotes)
+        listVotes.to_csv('datasets/listOfVotes.csv')
+        
+    except:
+        print('cou;dnt connect to vote db, reading stored')
+        listVotes=pd.read_csv('datasets/listOfVotes.csv')
 
     results={'deals':listDeals,
              'miners':miner_info,
              'addresses':list_addresses,
              'votes':listVotes,
              'core':list_core_devs,
-             'powers':list_powers}
+             'powers':list_powers,
+             'longShort':list_of_mappings
+             }
     
     return results
 # gets list of miner, owner, worker
