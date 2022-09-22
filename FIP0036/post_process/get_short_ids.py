@@ -26,8 +26,8 @@ def get_short_addresses_on_chain(long:list):
 
     Returns
     -------
-    results : list
-        a list of short ids associated to each long address entry
+    results : dict
+        a ldict of short ids associated to each long address entry
 
     '''
     
