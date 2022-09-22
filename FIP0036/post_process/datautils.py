@@ -537,6 +537,8 @@ def get_msigs(database: sentinel or None,  height: int):
 
 
     def get_short_addresses_on_chain(long:list):
+        from tqdm import tqdm
+        import os
         '''
         queries lotus directly to get short Ids from long ids
         
