@@ -536,6 +536,38 @@ def get_msigs(database: sentinel or None,  height: int):
     return msigGM
 
 
+    def get_short_addresses_on_chain(long:list):
+        '''
+        queries lotus directly to get short Ids from long ids
+        
+        
+        REQUIRES A LOTUS DAEMON ON THE BACKGROUND
+    
+        Parameters
+        ----------
+        long : list
+            a list of addresses in long format
+    
+        Returns
+        -------
+        results : dict
+            a ldict of short ids associated to each long address entry
+    
+        '''
+        
+        
+        results={'long':long, 'short':[]}
+        
+        
+        for a in tqdm(long):
+            
+            cmd='/usr/local/bin/lotus state lookup   '+a
+            results['short'].append(os.popen(cmd).read())
+    
+            
+        return results
+            
+
 
 # if __name__ == "__main__":
 #     minerId = "f01740934"
