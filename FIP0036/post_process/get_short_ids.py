@@ -15,6 +15,9 @@ import os
 def get_short_addresses_on_chain(long:list):
     '''
     queries lotus directly to get short Ids from long ids
+    
+    
+    REQUIRES A LOTUS DAEMON ON THE BACKGROUND
 
     Parameters
     ----------
