@@ -12,7 +12,21 @@ import os
 
 
 
-def get_short_addresses_on_chain(long):
+def get_short_addresses_on_chain(long:list):
+    '''
+    queries lotus directly to get short Ids from long ids
+
+    Parameters
+    ----------
+    long : list
+        a list of addresses in long format
+
+    Returns
+    -------
+    results : list
+        a list of short ids associated to each long address entry
+
+    '''
     
     
     results={'long':long, 'short':[]}
