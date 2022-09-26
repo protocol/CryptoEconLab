@@ -78,7 +78,7 @@ def getShortId(signature:dict,list_of_addresses_and_ids:list,longShort:list):
                 try:
                     
                     cmd='/usr/local/bin/lotus state lookup   '+X
-                    signature['short']=os.popen(cmd).read()
+                    signature['short']=os.popen(cmd).read()[:-1]
                 except:
                     print('error pinging from lotus. Make sure that you have initialized lotus daemon and that you are using the right path for lotus')
                     
@@ -518,7 +518,7 @@ def get_msigs(database: sentinel or None,  height: int):
     WHERE "height"<={}'''.format(height)
     
     try:
-        balances=pd.read_csv('datasets/msigs.csv')
+        msigGM=pd.read_csv('datasets/msigs.csv')
     except:
                 
         
