@@ -65,7 +65,7 @@ def getShortId(signature:dict,list_of_addresses_and_ids:list,longShort:list):
     else:
             
         try:
-            signature['short']=longShort[longShort['long']==X]['short'].values[0][:-1]
+            signature['short']=longShort[longShort['long']==X]['short'].values[0]
    
         except:
             
@@ -267,41 +267,22 @@ def is_worker_or_owner(Id,list_of_miners):
     return result,otherID
 
 def get_owners_and_workers(data:pd.core.frame.DataFrame,
+                           result:str,
                            address: str):
     
     
     '''
     returns a list of miner_id that have owner or worker =address
     '''
-    
-    SPs=[]
-    labels=[]
-    
-    Y_owner=np.array(data[data['owner_id']==address]['miner_id'].unique())
-    N_owner=len(Y_owner)
-    
-    if N_owner>0:
-        for yy in Y_owner:
-            labels.append('owner')
-            SPs.append(yy)
-    
-    
-    
-    Y_worker=data[data['worker_id']==address]['miner_id'].unique()
-    N_worker=len(Y_worker)
-    if N_worker>0:
-        
-        for yy in Y_worker:
-            labels.append('worker')
-            SPs.append(yy)
+    if result=='owner':
+        SPs=data[data['owner_id']==address]['miner_id']
+    elif result=='worker':
+        SPs=data[data['worker_id']==address]['miner_id']
+    else:
+        SPs=[]
 
-    SPs=pd.DataFrame([SPs,labels]).T
     
-    SPs.columns=['miner_id','type']
-    # import pdb
-    # pdb.set_trace()
-    
-    return SPs['miner_id'].unique()
+    return list(SPs)
     
     
 
@@ -514,8 +495,6 @@ def get_msigs(database: sentinel or None,  height: int):
     
     ''' returns list of msigs with threshold >1'''
     
-    QUERY='''SELECT * FROM "visor"."multisig_approvals"
-    WHERE "height"<={}'''.format(height)
     
     try:
         msigGM=pd.read_csv('datasets/msigs.csv')
