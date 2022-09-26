@@ -112,6 +112,7 @@ def run(export_path:str):
         
     all_votes_df=pd.DataFrame(all_votes)
     tallied=pd.DataFrame(tallied)
+    signatures = pd.DataFrame(signatures)
     
     all_votes_df.to_csv(export_path+'/all_votes.csv')
     list_of_votes.to_csv(export_path+'/raw_votes.csv')
