@@ -16,7 +16,7 @@ import datautils as utils
 from votes import Votes
 import pandas as pd
 
-
+#%%
 def dataPreprocess(height:int,secretString:str or None):
 
 
@@ -49,9 +49,6 @@ def dataPreprocess(height:int,secretString:str or None):
     list_core_devs = []
 
 
-    print('getting list of mappings...')
-    list_of_mappings=pd.read_csv('datasets/longShort.csv')
-
     
     #gets list of votes
     
@@ -63,7 +60,7 @@ def dataPreprocess(height:int,secretString:str or None):
         N_votes=len(listVotes)
         
         #deduplicates votes
-        listVotes=[listVotes.iloc[n] for n in range(N_votes) if listVotes['address'].iloc[n][:2]!='f0']
+        #listVotes=[listVotes.iloc[n] for n in range(N_votes) if listVotes['address'].iloc[n][:2]!='f0']
 
         listVotes=pd.DataFrame(listVotes)
         listVotes.to_csv('datasets/listOfVotes.csv')
@@ -72,13 +69,51 @@ def dataPreprocess(height:int,secretString:str or None):
         print('cou;dnt connect to vote db, reading stored')
         listVotes=pd.read_csv('datasets/listOfVotes.csv')
 
+
+    try: 
+        print('getting list of mappings...')
+        
+        list_of_mappings=pd.read_csv('datasets/longShort.csv')
+    except:
+        import os
+        from tqdm import tqdm
+        
+        print('building list of mappings...')
+
+        
+        voters=list(listVotes['signerAddress'])
+        list_of_mappings=[]
+        
+        for i in tqdm(range(len(voters))):
+            # import pdb
+            # pdb.set_trace()
+            cmd='/usr/local/bin/lotus state lookup   '+voters[i]
+            id_short=os.popen(cmd).read()[:-1]
+            list_of_mappings.append(id_short)
+        list_of_mappings=pd.DataFrame({'long':voters,
+                                       'short':list_of_mappings})
+        
+        
+        list_of_mappings.to_csv('datasets/longShort.csv')
+    
+    print('getting miner balances...')
+    list_of_balances=pd.read_csv('datasets/miner_balances.csv')
+
+        
+                                      
+
+        
+        
+
+
     results={'deals':listDeals,
              'miners':miner_info,
              'addresses':list_addresses,
              'votes':listVotes,
              'core':list_core_devs,
              'powers':list_powers,
-             'longShort':list_of_mappings
+             'longShort':list_of_mappings,
+             'balances':list_of_balances
              }
     
     return results

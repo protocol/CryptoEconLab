@@ -31,6 +31,19 @@ class Vote:
     other:dict
     groupID:int
     index:int
+    
+    
+    def to_dict(self):
+        
+        aux={'signer':self.signer,
+            'vote':self.vote,
+            'quantity':self.quantity,
+            'other':self.other,
+            'groupID':self.groupID,
+            'index':self.index
+            }
+        return aux
+        
         
 
 class groups:
@@ -66,7 +79,7 @@ class groups:
         self.groupName=names[str(self.groupID)]
     
     
-    def validateAndAddVote(self,signature:dict,amount=None,other_info:dict=[]):
+    def validateAndAddVote(self,signature:dict,amount=None,other_info:dict=[],validate=True):
         '''
         validates and adds a vote (as a dict) as a new vote on this group.
         Notice that an address might be able to vote for two different groups
@@ -96,7 +109,7 @@ class groups:
         
             
         
-        if self.is_ellegible(signature["address"]):
+        if validate and self.is_ellegible(signature["address"]):
             
         
             if amount is not None:
@@ -115,7 +128,23 @@ class groups:
 
         else:
              self.votedMoreThanOnce.append("signer")
+             print('voted more than once')
+    
              
+    
+    def list_to_df(self):
+        
+        df=[]
+        for ll in self.listVotes:
+            df.append(ll.to_dict() )
+        return pd.DataFrame(df)
+        
+        
+        
+        
+        
+        
+        
     
             
     
@@ -207,7 +236,7 @@ class groups:
             divisor=1
 
         self.tally = list_of_votes.groupby("vote")["quantity"].sum().to_dict()
-        total_votes = sum(self.tally.values())//divisor
+        total_votes = sum(self.tally.values())/divisor
         for op, voted_for_op in self.tally.items():
             voted_for_op=voted_for_op/divisor
             
@@ -216,7 +245,7 @@ class groups:
             
             print('option: '+str(op))
             print('There were a total of '+str(voted_for_op)+' '+self.getUnits()+' in favor of '+op)
-            print('this represents {}% of the vote'.format(round(100*voted_for_op/(total_votes),2) ))
+            print('this represents {}% of the vote'.format(round(100*voted_for_op/(total_votes),6) ))
             print('-----------')
 
              

@@ -256,7 +256,7 @@ def is_worker_or_owner(Id,list_of_miners):
     owner=Id in list(list_of_miners['owner_id'])
     
     if owner==False and worker==True:
-        result='worker', 
+        result='worker' 
         otherID=list_of_miners[list_of_miners['worker_id']==Id]['owner_id'].values[0]
     if owner==True:
         result='owner'
@@ -267,22 +267,25 @@ def is_worker_or_owner(Id,list_of_miners):
     return result,otherID
 
 def get_owners_and_workers(data:pd.core.frame.DataFrame,
-                           result:str,
                            address: str):
     
     
     '''
     returns a list of miner_id that have owner or worker =address
     '''
-    if result=='owner':
-        SPs=data[data['owner_id']==address]['miner_id']
-    elif result=='worker':
-        SPs=data[data['worker_id']==address]['miner_id']
-    else:
-        SPs=[]
+    SPs=[]
+    
+    spo=data[data['owner_id']==address]['miner_id']
+    spw=data[data['worker_id']==address]['miner_id']
+    
+    sps=pd.concat([spo,spw]).unique()
+    SPs=list(sps)
+    
+    
+
 
     
-    return list(SPs)
+    return SPs
     
     
 
@@ -547,15 +550,25 @@ def get_msigs(database: sentinel or None,  height: int):
     
             
         return results
-            
+
+def get_locked(database: sentinel or None,  height: int):
+
+    query='''SELECT "initial_pledge","miner_id","height" FROM "visor"."miner_locked_funds"
+    WHERE "height"<={}'''.format(height)
+    lockedbalances= database.customQuery(query)   
+    
+    
+    lockedbalances.sort_values(by='height',acending=False)
+    lockedbalances.groupby('miner_id').head(1)
+    return lockedbalances
 
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
 #     minerId = "f01740934"
 
-#     HEIGHT = 2162760
+     HEIGHT = 2162760
 
-#     db = connect_to_sentinel(secret_string="SecretString.txt")
+     db = connect_to_sentinel(secret_string="SecretString.txt")
 #     msigs=get_msigs(db,HEIGHT)
 #     #locked=get_miner_locked_funds(database=db, height=HEIGHT)
     
