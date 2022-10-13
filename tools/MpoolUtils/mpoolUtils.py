@@ -38,7 +38,7 @@ def listenMpool(filename:str=None,freq:int=10):
         location where you want to load/save the json file. If None, defaults
         to ./mpool.json
         
-    freq : int, default 25
+    freq : int, default 10
         how often to check.
 
     Returns
