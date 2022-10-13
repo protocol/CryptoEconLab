@@ -57,11 +57,8 @@ def dataPreprocess(height:int,secretString:str or None):
     
         votes=Votes() ; votes.update()
         listVotes=votes.votes
-        N_votes=len(listVotes)
         
-        #deduplicates votes
-        #listVotes=[listVotes.iloc[n] for n in range(N_votes) if listVotes['address'].iloc[n][:2]!='f0']
-
+        
         listVotes=pd.DataFrame(listVotes)
         listVotes.to_csv('datasets/listOfVotes.csv')
         

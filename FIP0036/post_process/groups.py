@@ -20,7 +20,6 @@ I.e: if a multisig has 5 signers with threshold as 3, then 3 out of 5 signers mu
 juan.madrigalcianci@protocol.ai
 """
 import pandas as pd
-import numpy as np
 from dataclasses import dataclass
 
 @dataclass
@@ -115,7 +114,7 @@ class groups:
             if amount is not None:
                 quantity=amount
                 
-            thisVote=Vote(signer=signature["signer"],
+            thisVote=Vote(signer=signature["address"],
                         vote=signature["optionName"],
                         quantity=quantity,
                         other=other_info,
@@ -127,8 +126,7 @@ class groups:
 
 
         else:
-             self.votedMoreThanOnce.append("signer")
-             print('voted more than once')
+             self.votedMoreThanOnce.append(signature["address"])
     
              
     
@@ -165,7 +163,10 @@ class groups:
     
     
     def has_voted(self,address:str):
-        has_voted= not self.is_ellegible(address)
+        has_voted=False
+        for vv in self.listVotes:
+            if address==vv.signer:
+                has_voted=True
         return has_voted
         
         
