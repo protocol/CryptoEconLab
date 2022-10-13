@@ -1,7 +1,7 @@
 # README
 
-######   author: Juan P. Madrigal-Cianci. CEL.
-#######         juan.madrigalcianci@protocol.ai   
+######   author: Juan P. Madrigal-Cianci, CEL. 2022.
+######         juan.madrigalcianci@protocol.ai   
     
 ---
 
