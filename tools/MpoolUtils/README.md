@@ -1,7 +1,7 @@
 # README
 
-####   author: Juan P. Madrigal-Cianci. CEL.
-####         juan.madrigalcianci@protocol.ai   
+######   author: Juan P. Madrigal-Cianci, CEL. 2022.
+######         juan.madrigalcianci@protocol.ai   
     
 ---
 
@@ -13,7 +13,7 @@ This is a tool to get info from the Mpool using glif. It contains the file
    * `listenMpool`:     keeps running MpoolQuerry every "freq" seconds until
                      it quits. i.e., it keeps gathering data
  
-see relevant docstrings.
+See relevant docstrings int he script.
 
 
 This is in the hopes that it might be useful to estimate demand, as well as
