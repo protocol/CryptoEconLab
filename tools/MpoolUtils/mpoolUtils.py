@@ -25,7 +25,7 @@ import requests
 import json
 import pandas as pd
 import time
-
+import math
 
 def listenMpool(filename:str=None,freq:int=10):
     '''
@@ -57,7 +57,26 @@ def listenMpool(filename:str=None,freq:int=10):
         except:
             print('there was an error!')
             quit
+
             
+def getHeight():
+    '''
+    gets chain height based on the current time.
+
+    Returns
+    -------
+    height: int.
+    height of the chain at the time this function is called
+
+    '''
+    
+    
+    FILECOIN_GENESIS_UNIX_EPOCH = 1598306400
+    unixEpoch=time.time()
+    return math.floor((unixEpoch - FILECOIN_GENESIS_UNIX_EPOCH) / 30)
+    
+
+
     
 def MpoolQuerry(filename:str=None)->dict:
     '''
@@ -83,7 +102,9 @@ def MpoolQuerry(filename:str=None)->dict:
             * gasPremium=  is the price per unit of gas (measured in attoFIL/gas) 
                 that the message sender is willing to pay
                     (on top of the BaseFee) to “tip” the miner that
-                    will include this message in a block        
+                    will include this message in a block   
+            * CID= the CID of the message
+            * height= The height of the chain at the time the Mpool was queried
                     
                     
     see https://spec.filecoin.io/systems/filecoin_vm/gas_fee/
@@ -122,6 +143,7 @@ def MpoolQuerry(filename:str=None)->dict:
         gasFeeCap=results['gasFeeCap']
         gasPremium=results['gasPremium']
         CID=results['CID']
+        height=results['height']
         
         N_old_entries=len(CID)
         
@@ -132,13 +154,14 @@ def MpoolQuerry(filename:str=None)->dict:
         gasFeeCap=[]
         gasPremium=[]
         CID=[]
+        height=[]
         N_old_entries=0
     #------------------------------------------------------------------------
     # iterates over all trxs and extracts relevant info
     #------------------------------------------------------------------------
     N=len(trxArray)
 
-
+    currentHeight=getHeight()
     for i in range(N):
         
         aux=trxArray[i]['Message']
@@ -146,11 +169,13 @@ def MpoolQuerry(filename:str=None)->dict:
         gasFeeCap.append(int(aux['GasFeeCap']))
         gasPremium.append(int(aux['GasPremium']))
         CID.append(aux['CID']['/'])
+        height.append(currentHeight)
     
     results={'gasLimit':gasLimit,
              'gasFeeCap':gasFeeCap,
              'gasPremium':gasPremium,
-             'CID':CID}
+             'CID':CID,
+             'height':height}
     #------------------------------------------------------------------------
     # removes duplicated entries by CID
     #------------------------------------------------------------------------
@@ -176,9 +201,9 @@ def MpoolQuerry(filename:str=None)->dict:
 if __name__=='__main__':
     FILENAME='./Mpool.json'
     # import os
-    # res=MpoolQuerry(FILENAME)
+    res=MpoolQuerry(FILENAME)
     # os.system('rm '+FILENAME)
-    listenMpool(FILENAME)
+    #listenMpool(FILENAME)
     
 
 
