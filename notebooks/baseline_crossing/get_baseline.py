@@ -22,6 +22,9 @@ def getBaseline(forecast_lenght):
     baseline_growth = float(np.log(2)/365.0)
     num_days = end_date-mainnet_start
     num_days = num_days.days
+    EXA_TO_EIB = (10**18) / (2**60)
+    b0 = 2.88888888
+    b0_adj = b0 * EXA_TO_EIB
     baseline_df = pd.DataFrame({
         "time": pd.date_range(start=mainnet_start, freq="d", periods=num_days),
         "total_power":2.88888888 * np.exp(baseline_growth*np.arange(num_days))*2**60
