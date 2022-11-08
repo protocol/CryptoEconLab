@@ -27,7 +27,7 @@ def getBaseline(forecast_lenght):
     b0_adj = b0 * EXA_TO_EIB
     baseline_df = pd.DataFrame({
         "time": pd.date_range(start=mainnet_start, freq="d", periods=num_days),
-        "total_power":2.88888888 * np.exp(baseline_growth*np.arange(num_days))*2**60
+        "total_power": b0_adj * np.exp(baseline_growth*np.arange(num_days))*2**60
     })
     
     baseline_df=baseline_df.set_index('time')
