@@ -19,7 +19,6 @@
     - [Research Grants](#research-grants)
     - [Our work](#our-work)
     - [Collaborations](#collaborations)
-  - [Community outreach 🧑‍🚀](#community-outreach-)
   - [Contact 📞](#contact-)
 
 ## Mission & Vision 💭
@@ -49,7 +48,7 @@ CryptoEconLab’s current focus areas are:
 
 We welcome discussion of our [current Open Problems](https://github.com/protocol/CryptoEconLab/tree/main/open_problems) on our [GitHub discussion page](https://github.com/protocol/CryptoEconLab/discussions/categories/ideas-open-problems-and-proposals). Please join us in exploring the future of cryptoeconomics by contributing to the solution of current problems and posing new ones! 
 
-The open problems' folder include research questions that can be used to develop an M.Sc. thesis or a PhD industry-experience project for students in computer science, statistics, data science, complexity, economics or related areas. These questions can also serve as the basis for independent postdoctoral research.
+The open problems' folder include research questions that can be used to develop an M.Sc. thesis or a Ph.D. industry-experience project for students in computer science, statistics, data science, complexity, economics or related areas. These questions can also serve as the basis for independent postdoctoral research.
 
 These project ideas can be discussed on the [CryptoEconLab Discussion Board](https://github.com/protocol/CryptoEconLab/discussions); inquiries about opportunities for [grant-supported research](https://grants.protocol.ai/) can be directed to [research-grants@protocol.ai](mailto:research@protocol.ai).
 
@@ -61,16 +60,12 @@ The full details and application process can be found in the dedicated [GitHub r
 
  ### Our work
 
-WIP
+This repository also includes code and analysis our lab has been working on. In the `tools` folder, you will find the open source tools we built. The folder `analysis` contains Jupyter notebooks and other auxiliary code that reproduces analysis and research developed by our lab. 
  
   
 ### Collaborations
   
 We are very interested in forming collaborations with researchers and engineers working in our fields of interest, and we offer several grants and research fellowships to support these working relationships. Please check out the [PL Research website](https://research.protocol.ai/outreach/) for further details and application instructions.
-
-## Community outreach 🧑‍🚀
-
-Please join us for discussion an anything in the CryptoEconLab extended universe on our [discussion forum](https://github.com/protocol/CryptoEconLab/discussions/)
 
 
 ## Contact 📞
