@@ -8,6 +8,7 @@
 # CryptoEconLab
 
 **Welcome to the CryptoEconLab public repository. Here you will be able to learn about and contribute to our Open Problems, RFPs, and Research Projects, as well as keep tabs on what we're planning for the future.** You can learn more about our lab in our [website](https://cryptoeconlab.io/) and the [Protocol Labs Research webpage](https://research.protocol.ai/groups/cryptoeconlab/). You can also follow us on [Twitter](https://mobile.twitter.com/cryptoeconlab) to keep taps on relevant discussions and information.
+
 ## Table of Contents
 
 - [CryptoEconLab](#cryptoeconlab)
@@ -15,7 +16,8 @@
   - [Mission & Vision](#mission--vision)
   - [Research](#research)
     - [Open Problems](#open-problems)
-    - [RFPs](#rfps)
+    - [Research Grants](#research-grants)
+    - [Our work](#our-work)
     - [Collaborations](#collaborations)
   - [Community](#community)
   - [Contact](#contact)
@@ -51,9 +53,15 @@ The open problems' folder include research questions that can be used to develop
 
 These project ideas can be discussed on the [CryptoEconLab Discussion Board](https://github.com/protocol/CryptoEconLab/discussions); inquiries about opportunities for [grant-supported research](https://grants.protocol.ai/) can be directed to [research-grants@protocol.ai](mailto:research@protocol.ai).
 
-### RFPs
-  
- As we develop and post RFPs, they will be posted in [this GitHub repo](https://github.com/protocol/research-RFPs).
+### Research Grants
+
+Protocol Labs has a grant program targeted at supporting research within the scope and mission of the company. It includes topic-specific proposals (the Requests for Proposals or RFPs) and open research awards (which are intended to support researchers pursuing topics of interest to Protocol Labs).
+
+The full details and application process can be found in the dedicated [GitHub repo](https://github.com/protocol/research-RFPs). We encourage the community to read the currently [open RPFs](https://github.com/protocol/research-grants#requests-for-proposals-rfps) and to [apply with topics](https://github.com/protocol/research-grants#open-research-grants) related to our lab's research scope.
+
+ ### Our work
+
+ 
   
 ### Collaborations
   
