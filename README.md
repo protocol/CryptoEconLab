@@ -23,28 +23,28 @@
 
 ## `CryptoEconLab`
 
-Cryptoeconomics is an emerging field of economic coordination games in cryptographically secured peer-to-peer networks. As an interdisciplinary study, cryptoeconomics involves a constellation of knowledge including computer science, network science, statistics,psychology, decision neuroscience, economics, and system engineering. In an increasingly networked and open world, cryptoeconomics will play a bigger role in coordinating human and machine activities and building a better future.
+Cryptoeconomics is an emerging field of economic coordination games in cryptographically secured peer-to-peer networks. As an interdisciplinary study, cryptoeconomics involves a constellation of knowledge including computer science, network science, statistics, psychology, decision neuroscience, economics, and system engineering. In an increasingly networked and open world, cryptoeconomics will play a bigger role in coordinating human and machine activities and building a better future.
 
 ### Mission & Vision
 
-CryptoEconLab at PL aspires to become a hub for research on economic incentives, coordination games, and novel marketplaces. We aim to develop capacity to design, validate, deploy, and govern large-scale economic systems. CryptoEconLab strives to empower projects in the ecosystem through novel incentives and advance humanity’s understanding of multiagent systems and algorithmic steering of economic networks.
+CryptoEconLab is Protocol Lab's hub for research on economic incentives, coordination game theory, and novel marketplaces. We aim to develop capacity to design, validate, deploy, and govern large-scale economic systems. CryptoEconLab strives to empower projects in the ecosystem through novel incentives and advance humanity’s understanding of multiagent systems and algorithmic steering of economic networks.
 
-The lab’s genesis comes from a growing need to enable the design and deployment of large-scale economic systems, from token networks to the Metaverse. CryptoEconLab is designed to take ownership of the economic aspects of a technosocial system including design, specification, validation, deployment, and governance.
-
-Please [join the discussion](https://github.com/protocol/CryptoEconLab/discussions) to learn how you can work with us!
+We are applying our learnings to grow and maintain the Filecoin ecosystem, where we are active drivers and participants. Filecoin is a layer1 blockchain that orchestrates a decentralized data storage network designed to store humanity’s most important information - and Filecoin’s unique cryptoeconomic system is central to its design.
 
 ## Research
 
-CryptoEconLab’s current foci are:
+CryptoEconLab’s current focus areas are:
 
-- Formation, diffusion, and learning in networks
-- Stochastic optimal control for evolutionary systems
-- Evolutionary game theory, population games, state based potential games
+- Incentive & token design
 - Optimal pricing and resource allocation in distributed networks
+- Real-world experience & business impact
+- Network analytics & data-driven monitoring
+- Formation, diffusion, and learning in networks
+- Modeling & simulation
 - Value attribution and graph-based algorithms
-- Market design, algorithmic game theory & differential privacy
+- Evolutionary game theory, population games, state-based potential games
 - Prediction markets, automated market makers, reputation systems
-- Institutional economics and governance
+- Governance process & principles
 
 
 ### Open Problems
