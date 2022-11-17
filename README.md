@@ -7,22 +7,22 @@
 
 # CryptoEconLab
 
-**Welcome to the CryptoEconLab public repository. Here you will be able to learn about and contribute to our Open Problems, RFPs, and Research Projects, as well as keep tabs on what we're planning for the future.** You can learn more about our lab in our [website](https://cryptoeconlab.io/) and the [Protocol Labs Research webpage](https://research.protocol.ai/groups/cryptoeconlab/). You can also follow us on [Twitter](https://mobile.twitter.com/cryptoeconlab) to keep taps on relevant discussions and information.
+**Welcome to the CryptoEconLab public repository. Here you will be able to learn about and contribute to our Open Problems, RFPs, and Research Projects, as well as keep tabs on what we're planning for the future.** You can learn more about our lab in our [website](https://cryptoeconlab.io/) and the [Protocol Labs Research webpage](https://research.protocol.ai/groups/cryptoeconlab/). You can also follow us on [Twitter](https://mobile.twitter.com/cryptoeconlab) and [LinkedIn](https://www.linkedin.com/company/cryptoeconlab/) to keep taps on relevant discussions and information.
 
 ## Table of Contents
 
 - [CryptoEconLab](#cryptoeconlab)
   - [Table of Contents](#table-of-contents)
-  - [Mission & Vision](#mission--vision)
-  - [Research](#research)
+  - [Mission & Vision 💭](#mission--vision-)
+  - [Research 📚](#research-)
     - [Open Problems](#open-problems)
     - [Research Grants](#research-grants)
     - [Our work](#our-work)
     - [Collaborations](#collaborations)
-  - [Community](#community)
-  - [Contact](#contact)
+  - [Community outreach 🧑‍🚀](#community-outreach-)
+  - [Contact 📞](#contact-)
 
-## Mission & Vision
+## Mission & Vision 💭
 
 Cryptoeconomics is an emerging field of incentive and mechanism design in cryptographically secured peer-to-peer networks. This multidisciplinary endeavor is at the core of every Web3 project, pulling in knowledge from computer science, network science, statistics, economics, and systems engineering. 
 
@@ -30,7 +30,7 @@ CryptoEconLab is Protocol Lab's hub for research on economic incentives, coordin
 
 We are applying our learnings to grow and maintain the Filecoin ecosystem, where we are active drivers and participants. Filecoin is a layer1 blockchain that orchestrates a decentralized data storage network designed to store humanity’s most important information - and Filecoin’s unique cryptoeconomic system is central to its design.
 
-## Research
+## Research 📚
 
 CryptoEconLab’s current focus areas are:
 
@@ -61,17 +61,22 @@ The full details and application process can be found in the dedicated [GitHub r
 
  ### Our work
 
+WIP
  
   
 ### Collaborations
   
 We are very interested in forming collaborations with researchers and engineers working in our fields of interest, and we offer several grants and research fellowships to support these working relationships. Please check out the [PL Research website](https://research.protocol.ai/outreach/) for further details and application instructions.
 
-## Community
+## Community outreach 🧑‍🚀
 
 Please join us for discussion an anything in the CryptoEconLab extended universe on our [discussion forum](https://github.com/protocol/CryptoEconLab/discussions/)
 
 
-## Contact
+## Contact 📞
 
-You can reach out to us anytime with your questions and interest in these projects by emailing [research@protocol.ai](mailto:research@protocol.ai)
+* [Main website](https://cryptoeconlab.io/)
+* [Twitter](https://mobile.twitter.com/cryptoeconlab)
+* [LinkedIn](https://www.linkedin.com/company/cryptoeconlab/)
+* Filecoin Slack Channel: #cryptoeconomics
+* General email: [research@protocol.ai](mailto:research@protocol.ai)
