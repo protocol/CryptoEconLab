@@ -2,7 +2,7 @@
 
 ## Introduction to the Problem
 
-Traditional network formation literature has focused on coming up with models to explain how networks are formed: random graphs, the [Erdős–Rényi model](https://www.renyi.hu/~p_erdos/1959-11.pdf) for the evolution of random networks, the [Watts–Strogatz model](http://worrydream.com/refs/Watts-CollectiveDynamicsOfSmallWorldNetworks.pdf) for the generation of random graphs with small world properties, the [Price](https://www.science.org/doi/10.1126/science.149.3683.510) and  [Barabási–Albert model](https://arxiv.org/abs/cond-mat/0106096) introducing a preferential attachment mechanism, and the [Expander Graphs](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.393.1430&rep=rep1&type=pdf) described by Bassalygo and Pinsker. 
+Traditional network formation literature has focused on coming up with models to explain how networks are formed: random graphs, the [Erdős–Rényi model](https://www.renyi.hu/~p_erdos/1959-11.pdf) for the evolution of random networks, the [Watts–Strogatz model](http://worrydream.com/refs/Watts-CollectiveDynamicsOfSmallWorldNetworks.pdf) for the generation of random graphs with small world properties, the [Price](https://www.science.org/doi/10.1126/science.149.3683.510) and  [Barabási–Albert models](https://arxiv.org/abs/cond-mat/0106096) introducing a preferential attachment mechanism, and the [Expander Graphs](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.393.1430&rep=rep1&type=pdf) described by Bassalygo and Pinsker. 
 
 Cryptoeconomic networks -- like many other economic and behavioral networks -- present the opportunity to define microeconomic structures that can enable specific targerted macro network structures to emerge. Being able to incentivize the formation of specific network topologies and influence network structural parameters is a powerful tool in token economic design with applications in  geographic incentivization and market and payment network design.
 
@@ -22,9 +22,9 @@ Additionally, results from game theory and biology have demonstrated the signifi
 
 ### Known shortcomings of existing solutions
 
-Much of the literature related to this topic focuses on  observing, describing, and modeling the dynamics of network topology emergence. We hope to stimulate further work on *methods of influencing the development of specific network topologies*, particularly in a decentralized or distributed system, which is something that we are now empowered to do with digital tokens.
+Much of the literature on this topic focuses on  observing, describing, and modeling the dynamics of network topology emergence. We hope to stimulate further work on *methods of influencing the development of specific network topologies*, particularly in a decentralized or distributed system, which is something that we are now empowered to do with digital tokens.
 
-Additionally, much of the work referenced above is framed in terms of network topology. While network topology is an important factor in determining network behavior, CryptoEconLab believes that there may be other parameters relevant to the function of cryptoeconomic networks that are not completely captured by models focused on topological features. We invite the community to use a broad definition of *"network structure"* in conducting its explorations of this question. 
+While the discussion above is largely framed in terms of network topology, and network topology is an important factor in determining network behavior, CryptoEconLab believes that there may be other parameters relevant to the function of cryptoeconomic networks that are not completely captured by models focused on topological features. We invite the community to use a broad definition of *"network structure"* in conducting its explorations of this question. 
 
 ## Solving this Open Problem
 
@@ -40,7 +40,7 @@ We invite solutions investigating both topological and non-topological propertie
 
 A good response to this Open Problem would be the creation of a general framework that can be contextualized for different use-cases, allowing us to explore *a network's reaction to changing incentives*. We are looking for description of the [leverage points](http://www.donellameadows.org/wp-content/userfiles/Leverage_Points.pdf) in a network with predictive power: what are the parameters we can tune to accomplish different objectives?
 
-Your contribution might resemble ZX's [work using state space representations to model blockchain-enabled networks](https://research.protocol.ai/publications/on-modeling-blockchain-enabled-economic-networks-as-stochastic-dynamical-systems/2020zhang.pdf) or Axel's exploration of the [incentives produced by different block reward structures](https://hackmd.io/@R02mDHrYQ3C4PFmNaxF5bw/B1A_BSztt).
+Your contribution might resemble [ZX's work](https://research.protocol.ai/publications/on-modeling-blockchain-enabled-economic-networks-as-stochastic-dynamical-systems/2020zhang.pdf) using state space representations to model blockchain-enabled networks or [Axel's exploration](https://hackmd.io/@R02mDHrYQ3C4PFmNaxF5bw/B1A_BSztt) of the incentives produced by different block reward structures.
 
 ### Estimated impact
 
