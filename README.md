@@ -10,22 +10,17 @@
 **Welcome to the CryptoEconLab public repository. Here you will be able to learn about and contribute to our Open Problems, RFPs, and Research Projects, as well as keep tabs on what we're planning for the future.** You can learn more about our lab in our [website](https://cryptoeconlab.io/) and the [Protocol Labs Research webpage](https://research.protocol.ai/groups/cryptoeconlab/). You can also follow us on [Twitter](https://mobile.twitter.com/cryptoeconlab) to keep taps on relevant discussions and information.
 ## Table of Contents
 
-- [The CryptoEconLab](#cryptoeconlab)
-  - [Mission & Vision](#mission--vision)
+- [Mission & Vision](#mission--vision)
 - [Research](#research)
   - [Open Problems](#research)
   - [Projects](#research)
   - [Collaborations](#collaborations)
-- [Team](#team)
 - [Community](#community)
-- [Publications, Talks, & Tutorials](#publications-talks--tutorials)
 - [Contact](#contact)
 
-## `CryptoEconLab`
+## Mission & Vision
 
-Cryptoeconomics is an emerging field of economic coordination games in cryptographically secured peer-to-peer networks. As an interdisciplinary study, cryptoeconomics involves a constellation of knowledge including computer science, network science, statistics, psychology, decision neuroscience, economics, and system engineering. In an increasingly networked and open world, cryptoeconomics will play a bigger role in coordinating human and machine activities and building a better future.
-
-### Mission & Vision
+Cryptoeconomics is an emerging field of incentive and mechanism design in cryptographically secured peer-to-peer networks. This multidisciplinary endeavor is at the core of every Web3 project, pulling in knowledge from computer science, network science, statistics, economics, and systems engineering. 
 
 CryptoEconLab is Protocol Lab's hub for research on economic incentives, coordination game theory, and novel marketplaces. We aim to develop capacity to design, validate, deploy, and govern large-scale economic systems. CryptoEconLab strives to empower projects in the ecosystem through novel incentives and advance humanity’s understanding of multiagent systems and algorithmic steering of economic networks.
 
@@ -86,9 +81,9 @@ We welcome discussion of our [current Open Problems](https://github.com/protocol
 
 ### Projects 
 
-In addition to our current [Open Problems](https://github.com/protocol/CryptoEconLab/tree/main/Open_Problems), CryptoEconLab has developed a set of research questions that can be used to develop an MSc thesis or PhD  industry-experience project for students in computer science, statistics, complexity, economics or related areas. These questions can also serve as the basis for independent postdoctoral research.
+In addition to our current [Open Problems](https://github.com/protocol/CryptoEconLab/tree/main/Open_Problems), CryptoEconLab has developed a set of research questions that can be used to develop an M.Sc. thesis or PhD industry-experience project for students in computer science, statistics, data science, complexity, economics or related areas. These questions can also serve as the basis for independent postdoctoral research.
 
-These project ideas can be discused on the [CryptoEconLab Discussion Board](https://github.com/protocol/CryptoEconLab/discussions); inquiries about opportunities for [grant-supported research](https://grants.protocol.ai/) can be directed to [research-grants@protocol.ai](mailto:research@protocol.ai).
+These project ideas can be discussed on the [CryptoEconLab Discussion Board](https://github.com/protocol/CryptoEconLab/discussions); inquiries about opportunities for [grant-supported research](https://grants.protocol.ai/) can be directed to [research-grants@protocol.ai](mailto:research@protocol.ai).
 
 
 #### Project  area 1: Scaling structure and network stability
@@ -159,22 +154,7 @@ We are very interested in forming collaborations with researchers and engineers 
 ## Community
 
 Please join us for discussion an  anything in the CryptoEconLab extended universe on our [discussion forum](https://github.com/protocol/CryptoEconLab/discussions/)
-  
-## Publications, Talks, & Tutorials
 
-You can vew our current slate of publications, talks, and other resources on [our lab webpage](https://research.protocol.ai/groups/cryptoeconlab/).
-
-
-## Team 👨🏽‍🚀
-
-- [Zixuan (ZX) Zhang](https://research.protocol.ai/authors/zixuan-zhang/)
-- [Alex Terrazas](https://research.protocol.ai/authors/alex-terrazas)
-- [Axel Cortés Cubero](https://research.protocol.ai/authors/axel-cortes-cubero)
-- [Tom Mellan](https://research.protocol.ai/authors/tom-mellan/)
-
-###  Hiring 🚀
-
-We are working to expand the team -- if you're a scientist or engineer interested in cryptoeconomics research, visit PL's [jobs page](https://boards.greenhouse.io/protocollabs) to learn more and apply! 
 
 ## Contact
 
