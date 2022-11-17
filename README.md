@@ -74,4 +74,3 @@ We are very interested in forming collaborations with researchers and engineers 
 * Twitter: [@cryptoeconlab](https://mobile.twitter.com/cryptoeconlab)
 * LinkedIn: [cryptoeconlab](https://www.linkedin.com/company/cryptoeconlab/)
 * Filecoin Slack Channel: [#cryptoeconomics](https://filecoinproject.slack.com/archives/C047LKMDRLM)
-* General email: [research@protocol.ai](mailto:research@protocol.ai)
