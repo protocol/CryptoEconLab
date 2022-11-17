@@ -78,5 +78,5 @@ Please join us for discussion an anything in the CryptoEconLab extended universe
 * [Main website](https://cryptoeconlab.io/)
 * [Twitter](https://mobile.twitter.com/cryptoeconlab)
 * [LinkedIn](https://www.linkedin.com/company/cryptoeconlab/)
-* Filecoin Slack Channel: #cryptoeconomics
+* Filecoin Slack Channel: [#cryptoeconomics](https://filecoinproject.slack.com/archives/C047LKMDRLM)
 * General email: [research@protocol.ai](mailto:research@protocol.ai)
