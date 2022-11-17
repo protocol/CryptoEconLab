@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://research.protocol.ai/research/groups/cryptoeconlab/" title="CryptoEconLab">
+  <a href="https://cryptoeconlab.io" title="CryptoEconLab">
     <img src="https://user-images.githubusercontent.com/25029171/149471901-e6ea751d-b030-4bf3-bb2e-f1ac54c14db2.png" width="140" />
   </a>
 
@@ -7,8 +7,7 @@
 
 # CryptoEconLab
 
-**Welcome to the CryptoEconLab public repository. Here you will be able to learn about and contribute to our Open Problems, RFPs, and Research Projects, as well as keep tabs on what we're planning for the future.** You can also follow our work on our [Protocol Labs Research webpage](https://research.protocol.ai/groups/cryptoeconlab/) and the [PL Research blog](https://research.protocol.ai/blog/) by [subscribing](https://protocol.us4.list-manage.com/subscribe?MERGE0=&u=09d704b0125b11d44d67d4617&id=7aa0f1150b&subscribe=) to the PL Research newsletter.
-
+**Welcome to the CryptoEconLab public repository. Here you will be able to learn about and contribute to our Open Problems, RFPs, and Research Projects, as well as keep tabs on what we're planning for the future.** You can learn more about our lab in our [website](https://cryptoeconlab.io/) and the [Protocol Labs Research webpage](https://research.protocol.ai/groups/cryptoeconlab/). You can also follow us on [Twitter](https://mobile.twitter.com/cryptoeconlab) to keep taps on relevant discussions and information.
 ## Table of Contents
 
 - [The CryptoEconLab](#cryptoeconlab)
