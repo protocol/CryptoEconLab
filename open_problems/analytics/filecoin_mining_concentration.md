@@ -1,4 +1,4 @@
-# Concentration level in Filecoin Storage Mining and the consensus attacks
+# Concentration in Filecoin storage mining and network attacks
 
 ## Introduction to the problem
 
