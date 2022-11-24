@@ -13,7 +13,7 @@ numpy
 
 
 * `NHPP.py`: This code implements a non-homogeneous Poisson process via Poisson thinning c.f. Boierkens et al, "Handbook of Monte Carlo methods"
-
+* `messages.py`: This codes implements the Mpool and message classes
 
 
 
