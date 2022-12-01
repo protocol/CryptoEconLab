@@ -1,13 +1,10 @@
+---
 name: StarMap Issue Template
-description: Create an Issue that is tracked for StarMap roadmapping
-title: "[StarMap]: "
+about: Create an Issue that is tracked for StarMap roadmapping
+title: "StarMap Issue Template"
 labels: ["starmaps"]
-assignees:
-  - octocat
-body:
-  - type: markdown
-    attributes:
-      description: 
+assignees: ''
+---
 eta: 2022-12-31
 
 children:
