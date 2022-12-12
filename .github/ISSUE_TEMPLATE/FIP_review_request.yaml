@@ -1,5 +1,5 @@
-name: CEL FIP Review and SLA
-description: CryptoEconLab’s Service-Level-Agreement for FIP-related Modeling, Analysis, Review, and/or Comment Work
+name: CEL FIP Review
+description: Request for CryptoEconLab to do FIP-related Modeling, Analysis, Review, and/or Comment Work
 title: "[FIP Review]: "
 labels: ["FIP Review"]
 assignees:
@@ -8,8 +8,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        This SLA serves to set expectations for timelines and level of effort when modeling, analysis, or review work is requested of the CryptoEconLab. 
-        Such work products can range from very high-level and expedient to very sophisticated and labor-intensive, depending on the requirements.
+        See associated SLA for expectations on timelines and level of effort. Work products can range from very high-level and expedient to very sophisticated and labor-intensive, depending on the requirements.
 
   - type: textarea
     id: request_summary
@@ -66,7 +65,7 @@ body:
   - type: textarea
     id: related_info
     attributes:
-      label: Related Information
+      label: Additional Information
       description: Additional resources, documentation, and links that may be helpful 
     validations:
       required: false
@@ -74,8 +73,8 @@ body:
   - type: input
     id: contact
     attributes:
-      label: Contact Details if Private Response Requested
-      description: We will default to public responses on the created issue, but if you request an alternate communication method, how should we get in touch with you?
+      label: Contact Details (if Private Response Requested)
+      description: Optional. We will default to public responses on the created issue, but if you request an alternate communication method, how should we get in touch with you?
       placeholder: ex. email@example.com
     validations:
       required: false
