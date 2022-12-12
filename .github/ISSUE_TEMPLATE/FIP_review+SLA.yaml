@@ -24,7 +24,7 @@ body:
     id: audience
     attributes:
       label: Audience / Consumer for these results
-      description: Select one or more of:
+      description: Select one or more of
       options:
         - Core Developers
         - Ecosystem Developers
@@ -38,7 +38,7 @@ body:
     id: timeframe
     attributes:
       label: Timeframe
-      description: Select one or more of:
+      description: Select one or more of
       options:
         - No Rush 
         - Needed in 6 months
