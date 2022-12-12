@@ -1,0 +1,81 @@
+name: CEL Idea Review
+description: Request for CryptoEconLab to do Modeling, Analysis, Review, and/or Comment Work on an idea that is not yet a formal FIP
+title: "[Idea Review]: "
+labels: ["Idea Review"]
+assignees:
+  - octocat
+body:
+  - type: markdown
+    attributes:
+      value: |
+        See associated SLA for expectations on timelines and level of effort. Work products can range from very high-level and expedient to very sophisticated and labor-intensive, depending on the requirements.
+
+  - type: textarea
+    id: request_summary
+    attributes:
+      label: Request Summary
+      description: Succinctly summarize the request that you are asking us to explore in a paragraph or two 
+      placeholder: Short summary of the request / issue / question here...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: audience
+    attributes:
+      label: Audience / Consumer for this Review 
+      description: Select one or more of
+      options:
+        - Core Developers
+        - Ecosystem Developers
+        - Storage Providers
+        - Token Holders
+      multiple: true
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: timeframe
+    attributes:
+      label: Timeframe
+      description: Select one or more of
+      options:
+        - No Rush 
+        - Needed in 6 months
+        - Needed in 3 months
+        - Needed in 1 month
+    validations:
+      required: true
+     
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Short description of why this analysis is needed
+    validations:
+      required: false
+
+  - type: textarea
+    id: desired_deliverables
+    attributes:
+      label: Desired Deliverables
+      description: It would be helpful to describe any specific deliverables you might have in mind to give insight into the request. For example “A graph of quantities X and Y plotted over time for the next 12 months”
+    validations:
+      required: false
+
+  - type: textarea
+    id: related_info
+    attributes:
+      label: Additional Information
+      description: Additional resources, documentation, and links that may be helpful 
+    validations:
+      required: false
+
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details (if Private Response Requested)
+      description: Optional. We will default to public responses on the created issue, but if you request an alternate communication method, how should we get in touch with you?
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+      
