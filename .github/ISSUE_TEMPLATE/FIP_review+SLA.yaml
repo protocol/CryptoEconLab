@@ -11,7 +11,7 @@ body:
         This SLA serves to set expectations for timelines and level of effort when modeling, analysis, or review work is requested of the CryptoEconLab. 
         Such work products can range from very high-level and expedient to very sophisticated and labor-intensive, depending on the requirements.
 
-- type: textarea
+  - type: textarea
     id: request_summary
     attributes:
       label: Request Summary
@@ -70,7 +70,7 @@ body:
     validations:
       required: false
 
-- type: input
+  - type: input
     id: contact
     attributes:
       label: Contact Details if Private Response Requested
