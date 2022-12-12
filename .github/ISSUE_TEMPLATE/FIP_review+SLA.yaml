@@ -2,7 +2,6 @@ name: CEL FIP Review and SLA
 description: CryptoEconLab’s Service-Level-Agreement for FIP-related Modeling, Analysis, Review, and/or Comment Work
 title: "[FIP Review]: "
 labels: ["FIP Review"]
-assignees:
 
 body:
   - type: markdown
