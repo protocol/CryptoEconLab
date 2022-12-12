@@ -19,6 +19,9 @@
     - [Research Grants](#research-grants)
     - [Our work](#our-work)
     - [Collaborations](#collaborations)
+  - [Work Request :hammer_and_wrench:](#work-request-)
+    - [How to make a Request](#how-to-make-)
+    - [SLA / What to expect from CEL](#sla-what-)
   - [Contact 📞](#contact-)
 
 ## Mission & Vision 💭
@@ -67,6 +70,29 @@ This repository also includes code and analysis our lab has been working on. In 
   
 We are very interested in forming collaborations with researchers and engineers working in our fields of interest, and we offer several grants and research fellowships to support these working relationships. Please check out the [PL Research website](https://research.protocol.ai/outreach/) for further details and application instructions.
 
+  
+## Work Request :hammer_and_wrench:
+
+### How to make a Request
+
+We maintain a transparent work-request process using Github Issues to best serve our customers and stakeholders. To create a request, please fill out the appropriate [Work Request Issue template](https://github.com/protocol/CryptoEconLab/issues/new/choose). 
+
+### SLA / What to expect from CEL
+
+Resulting modeling, analysis, or review work can range from very high-level and expedient to very sophisticated and labor-intensive, depending on the requirements, so we use the following **service level agreement (SLA)** to set expectations for timelines and level of effort when an issue or request is generated for CryptoEconLab:
+
+CEL will review each submitted Github Issue within a maximum of 2 weeks and assess whether we have capacity and ability to engage. If so, we will respond in the comments with the following information:
+- The issue should contain all of the information requested in the form.
+- Questions or clarifications on the submitted request 
+- Possible paths forward, which may contain different levels of support depending on staff availability and priority
+- We will then work with the requestor to develop an appropriate work plan and communication plan that is mutually agreeable. At a minimum, this would be commenting on outcomes in the Github issue; but could also expand to include modeling or analysis workstreams and/or discussions, documents, reports, or meetings.
+
+In general, we will work to support the following timelines after a request has completed the above steps (submission and scope agreement):
+- 2 weeks for initial review of FIPs or FIP discussions
+- 2 weeks to interpret new questions about existing CryptoEconLab models and analysis
+- 2+ weeks to scope and plan for new CryptoEconLab models and analysis (this does not include the actual modeling and analysis, which cannot be estimated before understanding all the previous steps for a given request)
+
+If questions or clarifications about the original request take more time to resolve, all subsequent time frames would extend by this amount.
 
 ## Contact 📞
 
