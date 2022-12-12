@@ -1,0 +1,81 @@
+name: CEL FIP Review and SLA
+description: CryptoEconLab’s Service-Level-Agreement for FIP-related Modeling, Analysis, Review, and/or Comment Work
+title: "[FIP Review]: "
+labels: ["FIP Review"]
+assignees:
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This SLA serves to set expectations for timelines and level of effort when modeling, analysis, or review work is requested of the CryptoEconLab. 
+        Such work products can range from very high-level and expedient to very sophisticated and labor-intensive, depending on the requirements.
+
+- type: textarea
+    id: request_summary
+    attributes:
+      label: Request Summary
+      description: Succinctly summarize the request that you are asking us to explore in a paragraph or two 
+      placeholder: What is the request / issue / question in 140 characters or less?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: audience
+    attributes:
+      label: Audience / Consumer for these results
+      description: Select one or more of:
+      options:
+        - Core Developers
+        - Ecosystem Developers
+        - Storage Providers
+        - Token Holders
+      multiple: true
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: timeframe
+    attributes:
+      label: Timeframe
+      description: Select one or more of:
+      options:
+        - No Rush 
+        - Needed in 6 months
+        - Needed in 3 months
+        - Needed in 1 month
+    validations:
+      required: true
+     
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Short description of why this analysis is needed
+    validations:
+      required: false
+
+  - type: textarea
+    id: desired_deliverables
+    attributes:
+      label: Desired Deliverables
+      description: It would be helpful to describe any specific deliverables you might have in mind to give insight into the request. For example “A graph of quantities X and Y plotted over time for the next 12 months”
+    validations:
+      required: false
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Short description of why this analysis is needed
+    validations:
+      required: false
+
+- type: input
+    id: contact
+    attributes:
+      label: Contact Details if Private Response Requested
+      description: We will default to public responses on the created issue, but if you request an alternate communication method, how should we get in touch with you?
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+      
