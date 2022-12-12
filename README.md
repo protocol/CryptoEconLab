@@ -19,9 +19,9 @@
     - [Research Grants](#research-grants)
     - [Our work](#our-work)
     - [Collaborations](#collaborations)
-  - [Work Request :hammer_and_wrench:](#work-request-)
-    - [How to make a Request](#how-to-make-)
-    - [SLA / What to expect from CEL](#sla-what-)
+  - [Work Request :hammer_and_wrench:](#work-request-hammer_and_wrench)
+    - [How to make a Request](#how-to-make-a-request)
+    - [SLA / What to expect from CEL](#sla--what-to-expect-from-cel)
   - [Contact 📞](#contact-)
 
 ## Mission & Vision 💭
