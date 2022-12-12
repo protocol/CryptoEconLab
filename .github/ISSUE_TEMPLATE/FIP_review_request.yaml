@@ -8,8 +8,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        See associated SLA for expectations on timelines and level of effort. Work products can range from very high-level and expedient to very sophisticated and labor-intensive, depending on the requirements.
-
+        See associated [submission process and SLA](https://github.com/protocol/CryptoEconLab/blob/main/README.md#work-request-hammer_and_wrench) for expectations on timelines and level of effort. Work products can range from very high-level and expedient to very sophisticated and labor-intensive, depending on the requirements.
+        
   - type: textarea
     id: request_summary
     attributes:
