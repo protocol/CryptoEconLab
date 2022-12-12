@@ -15,14 +15,14 @@ body:
     attributes:
       label: Request Summary
       description: Succinctly summarize the request that you are asking us to explore in a paragraph or two 
-      placeholder: What is the request / issue / question in 140 characters or less?
+      placeholder: Short summary of the request / issue / question here...
     validations:
       required: true
 
   - type: dropdown
     id: audience
     attributes:
-      label: Audience / Consumer for these results
+      label: Audience / Consumer for this Review 
       description: Select one or more of
       options:
         - Core Developers
