@@ -7,7 +7,7 @@
 
 # CryptoEconLab
 
-**Welcome to the CryptoEconLab public repository. Here you will be able to learn about and contribute to our Open Problems, RFPs, and Research Projects, as well as keep tabs on what we're planning for the future.** You can learn more about our lab in our [website](https://cryptoeconlab.io/) and the [Protocol Labs Research webpage](https://research.protocol.ai/groups/cryptoeconlab/). You can also follow us on [Twitter](https://mobile.twitter.com/cryptoeconlab) and [LinkedIn](https://www.linkedin.com/company/cryptoeconlab/) to keep taps on relevant discussions and information.
+**Welcome to the CryptoEconLab public repository. Here you will be able to learn about and contribute to our Open Problems, RFPs, and Research Projects, as well as keep tabs on what we're planning for the future.** You can learn more about our lab in our [website](https://cryptoeconlab.io/) and the [Protocol Labs Research webpage](https://cryptoeconlab.io/). You can also follow us on [Twitter](https://mobile.twitter.com/cryptoeconlab) and [LinkedIn](https://www.linkedin.com/company/cryptoeconlab/) to keep taps on relevant discussions and information.
 
 ## Table of Contents
 
