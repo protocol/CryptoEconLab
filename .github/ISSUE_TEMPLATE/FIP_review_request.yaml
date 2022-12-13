@@ -65,7 +65,7 @@ body:
   - type: textarea
     id: related_info
     attributes:
-      label: Link to FIP, FIP discussion, or Additional Information
+      label: Links to FIP, FIP discussion, or Additional Information
       description: Additional resources, documentation, and links that may be helpful. **PLEASE INCLUDE LINKS TO FIPS OR FIP DISCUSSIONS IF AVAILABLE.** 
     validations:
       required: false
