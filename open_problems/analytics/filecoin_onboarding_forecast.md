@@ -1,4 +1,4 @@
-# Detection of collusion communities in the FIL+ program
+# Forecasting storage onboarding in the Filecoin Network
 
 ## Introduction to the problem
 
