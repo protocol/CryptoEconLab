@@ -46,4 +46,39 @@ class SigmoidDemand:
         return   self.TipDistr()*(1- survival(base_fee, self.a(), self.b()))
 
 
+class nhPoisson:
+    
+    def __init__(self,a:float,b:float,
+                 Nsampler:callable,TrxDist:callable,
+                 TipDistr:callable,jumpIntensity:float=0):
+                
+        self.a=a
+        self.b=b
+        self.TrxDist=TrxDist
+        self.Nsampler=Nsampler
+        self.TipDistr=TipDistr
+        self.jumpIntensity=jumpIntensity
+    
+    def getNumberOfMessages(self,base_fee):
+        
+        # import pdb
+        # pdb.set_trace()
+        
+        jumpToZero=np.random.random()<self.jumpIntensity
+        if jumpToZero:
+            num_transactions=0
+        elif np.random.random()<0.02:
+            num_transactions =  self.Nsampler(1e-16, self.a(), self.b())
+        else:
+            num_transactions =  self.Nsampler(base_fee, self.a(), self.b())
+
+        return num_transactions
+    
+    
+    def getTrxGas(self,base_fee:float):
+        return  self.TrxDist(base_fee)
+    
+    def getTip(self,base_fee:float):
+        return   self.TipDistr()*(1- survival(base_fee, self.a(), self.b()))
+
 

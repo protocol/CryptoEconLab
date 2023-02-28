@@ -171,5 +171,6 @@ def ABM(params,verbose:bool=False,plots:bool=True):
         plt.show()
 
 
-    plt.hist(gu)    
+        plt.hist(gu)    
+        plt.show()
     return res
