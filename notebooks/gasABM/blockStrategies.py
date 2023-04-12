@@ -21,6 +21,33 @@ def GreedyPack(mempool,basefees):
  
         gamma=1
         return gamma,transactions
+
+
+def feeAversePack(mempool,basefees,limit=1e-8):
+        
+    
+    gamma=0
+    transactions = sorted(
+        mempool.transactions,
+        key=lambda t: t.tip,
+        reverse=True)
+    
+    if transactions is None:
+        transactions=[]
+    if basefees[-1]<limit:
+# Sort transactions by marginal revenue per unit of gas limit
+
+
+
+    # Add transactions to block until it's full or there are no more
+    # transactions
+
+ 
+        gamma=1
+
+    return gamma,transactions
+
+
     
 def underPack(mempool,basefees):
         # Sort transactions by marginal revenue per unit of gas limit
@@ -49,6 +76,23 @@ def DeltaPrice(mempool,basefees,factor=5):
         if len(basefees)>factor+1:
             aux=(1*(np.diff(basefees)[-(factor+1):]>0)).mean()
             gamma=1-aux
+        else:
+            gamma=1
+
+        return gamma,transactions
+    
+    
+def half(mempool,basefees):
+        # Sort transactions by marginal revenue per unit of gas limit
+        transactions = sorted(
+            mempool.transactions,
+            key=lambda t: t.tip,
+            reverse=True)
+
+        # Add transactions to block until it's full or there are no more
+        # transactions
+        if np.random.random()<0.5:
+            gamma=0.5
         else:
             gamma=1
 
