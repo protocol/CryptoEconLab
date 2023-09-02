@@ -41,18 +41,24 @@ def get_training_data(start_date, end_date):
         start_date,
         end_date
     )
+    df_power_renewed = sso.get_day_renewed_power_stats(
+        start_date,
+        end_date, 
+        end_date
+    )
     df_power_cumulative = sso.query_spacescope_power_stats(
         start_date, 
-        end_date
+        end_date,
     )
     # merge the dataframes
     tdf = pd.merge(gas_df, df_power_onboard, on='date', how='outer')
     tdf = pd.merge(tdf, df_power_cumulative, on='date', how='outer')
+    tdf = pd.merge(tdf, df_power_renewed, on='date', how='outer')
     
     tdf['fpr'] = (tdf['day_onboarded_qa_power_pib'] - tdf['day_onboarded_rb_power_pib'])/tdf['day_onboarded_qa_power_pib']
     tdf['day_onboarded_deal_power'] = (tdf['day_onboarded_qa_power_pib'] - tdf['day_onboarded_rb_power_pib'])/9
     tdf['network_qa_rb_ratio'] = tdf['total_qa_power_eib'] / tdf['total_raw_power_eib']
-
+    
     # add in precommitx and provecommitx gas fields
     tdf['precommitx_sector_gas_used'] = tdf['precommit_sector_gas_used'] + tdf['precommit_sector_batch_gas_used']
     tdf['provecommitx_sector_gas_used'] = tdf['provecommit_sector_gas_used'] + tdf['provecommit_aggregate_gas_used']
@@ -68,8 +74,12 @@ gas2kwargs = {
     },
     'precommitx': {  # can be improved
         'x_col': 'precommitx_sector_gas_used',
-        'y_cols': ['day_onboarded_rb_power_pib', 'day_onboarded_qa_power_pib', 'day_onboarded_deal_power', 'network_qa_rb_ratio'],
-        'formula': 'precommitx_sector_gas_used~1+day_onboarded_rb_power_pib+day_onboarded_qa_power_pib+day_onboarded_deal_power+network_qa_rb_ratio',
+        # 'y_cols': ['day_onboarded_rb_power_pib', 'day_onboarded_qa_power_pib', 'day_onboarded_deal_power', 'network_qa_rb_ratio'],
+        # 'formula': 'precommitx_sector_gas_used~1+day_onboarded_rb_power_pib+day_onboarded_qa_power_pib+day_onboarded_deal_power+network_qa_rb_ratio',
+        'y_cols': ['day_onboarded_rb_power_pib', 'day_onboarded_qa_power_pib', 'day_onboarded_deal_power', 
+                   'network_qa_rb_ratio', 'total_qa_power_eib', 'total_raw_power_eib', 'fpr', 
+                   'rb_renewal_rate', 'day_renewed_rb_power_pib', 'day_renewed_qa_power_pib'],
+        'formula': 'precommitx_sector_gas_used~1+day_onboarded_rb_power_pib+day_onboarded_qa_power_pib+day_onboarded_deal_power+network_qa_rb_ratio+total_qa_power_eib+total_raw_power_eib+fpr+rb_renewal_rate+day_renewed_rb_power_pib+day_renewed_qa_power_pib',
     },
     'precommit': {  # can be improved
         'x_col': 'precommit_sector_gas_used',
@@ -84,8 +94,10 @@ gas2kwargs = {
     },
     'total': {  # can be improved
         'x_col': 'total_gas_used',
-        'y_cols': ['day_onboarded_rb_power_pib', 'day_onboarded_qa_power_pib', 'day_onboarded_deal_power', 'network_qa_rb_ratio'],
-        'formula': 'total_gas_used~1+day_onboarded_rb_power_pib+day_onboarded_qa_power_pib+day_onboarded_deal_power+network_qa_rb_ratio',
+        'y_cols': ['day_onboarded_rb_power_pib', 'day_onboarded_qa_power_pib', 'day_onboarded_deal_power', 
+                   'network_qa_rb_ratio', 'total_qa_power_eib', 'total_raw_power_eib', 'fpr', 
+                   'rb_renewal_rate', 'day_renewed_rb_power_pib', 'day_renewed_qa_power_pib'],
+        'formula': 'total_gas_used~1+day_onboarded_rb_power_pib+day_onboarded_qa_power_pib+day_onboarded_deal_power+network_qa_rb_ratio+total_qa_power_eib+total_raw_power_eib+fpr+rb_renewal_rate+day_renewed_rb_power_pib+day_renewed_qa_power_pib',
     }
 }
 
@@ -140,11 +152,12 @@ class PyfluxWrapper:
         # TODO: if dep_var not in the inputted dataframe, can fill with zeros
 
         oos_data[dep_var] = oos_data[dep_var].replace(np.nan, 0)
-        _, X_oos = dmatrices(self.formula, oos_data, return_type="dataframe")  
-        h = len(test_df_normalized)
-        X_pred = X_oos
+        _, X_oos = dmatrices(self.formula, oos_data, return_type="dataframe")   # not sure why this is len(X_oos) +1 = len(test_df)
+        X_pred = np.asarray(X_oos)
+        h = X_pred.shape[0]
+        # print(len(X_oos), len(X_pred), h, len(test_df), len(oos_data))
         if self.model is not None:
-            sim_vector = self.model._sim_prediction_bayes(h, np.asarray(X_pred), num_mc) # shape = [h, num_mc]
+            sim_vector = self.model._sim_prediction_bayes(h, X_pred, num_mc) # shape = [h, num_mc]
             sim_vector = sim_vector.T # shape = [num_mc, h]
             
             y_pred = np.zeros_like(sim_vector)
