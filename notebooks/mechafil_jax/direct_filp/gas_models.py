@@ -14,6 +14,21 @@ import pmdarima as pm
 from pmdarima.arima.utils import ndiffs
 from patsy import dmatrices
 
+import statsmodels.api as sm
+from statsmodels.distributions.empirical_distribution import ECDF, monotone_fn_inverter
+from statsmodels.tsa.arima.model import ARIMA
+import pyvinecopulib as pv
+
+from scipy.interpolate import interp1d
+import numpy as np
+from datetime import date, timedelta, datetime
+import pandas as pd
+import numpy as np
+import numpy.random
+
+import sqlalchemy as sqa
+from functools import reduce
+
 auth='/Users/kiran/code/auth/kiran_spacescope_auth.json'
 sso = dss.SpacescopeDataConnection(auth)
 
@@ -27,7 +42,7 @@ def get_gas_data_spacescope(start_date, end_date):
     df_gas['date'] = pd.to_datetime(df_gas['stat_date']).dt.date
     return df_gas
 
-def get_training_data(start_date, end_date):
+def get_daily_gasusage_training_data(start_date, end_date):
     """
     This function returns a dataframe with the following columns:
     - date
@@ -65,6 +80,51 @@ def get_training_data(start_date, end_date):
     
     return tdf
 
+def get_basefee_spacescope(start_date, end_date):
+    url_template = "https://api.spacescope.io/v2/gas/network_base_fee?end_hour=%s&start_hour=%s"
+    dates_chunked = sso.chunk_dates(start_date, end_date, chunks_days=30)
+    df_list = []
+    for d in dates_chunked:
+        dt_start = datetime.combine(d[0], datetime.min.time())
+        dt_end = datetime.combine(d[1], datetime.max.time())
+        chunk_start = dt_start.strftime("%Y-%m-%dT%H:%M:%SZ")
+        chunk_end = dt_end.strftime("%Y-%m-%dT%H:%M:%SZ")
+        
+        url = url_template % (chunk_end, chunk_start)
+        df = sso.spacescope_query_to_df(url)
+        df_list.append(df)
+    df_all = pd.concat(df_list, ignore_index=True)
+    df_all['hour_date'] = pd.to_datetime(df_all['hour_date'])
+    return df_all
+
+def get_message_gas_economy_lily(HEIGHT=3_000_000, auth='/Users/kiran/code/auth/lily.txt'):
+    FILECOIN_GENESIS_UNIX_EPOCH = 1598306400
+    with open(auth) as f:
+        secretString = f.read()
+    
+    # Try to create a connection to the database
+    try:
+        # Define an engine using the connection string
+        engine = sqa.create_engine(secretString)
+        # Establish a connection to the database
+        conn = engine.connect()
+    # If the connection fails, catch the exception and print an error message
+    except Exception as e:
+        print("Failed to connect to database")
+        # Propagate the error further
+        raise(e)
+        
+    Q = f'''
+         SELECT height, base_fee
+         FROM "visor"."message_gas_economy"
+         WHERE height > {HEIGHT}
+         ORDER BY height ASC
+     '''
+    df_basefee = pd.read_sql(sql=sqa.text(Q), con=conn)
+    df_basefee['time'] = pd.to_datetime(df_basefee['height'].values*30 + FILECOIN_GENESIS_UNIX_EPOCH, unit='s')
+    
+    return df_basefee
+    
 # patsy style formulas
 gas2kwargs = {
     'psd': { # works OK
@@ -267,3 +327,251 @@ class GasxGasModel(PyfluxWrapper):
         result = self.model.fit('M-H', nsims=20000)
     
         return result
+
+class BivariateCopulaModel:
+    def __init__(self, X):
+        self.X = X
+        assert self.X.shape[1] == 2
+        self.U = pv.to_pseudo_obs(X)
+
+        self.model = None
+        self.is_fit = False
+
+    def fit(self):
+        # build the copula model (allow pvlib to check all parametrizations)
+        self.model = pv.Bicop(data=self.U)
+        # build empirical marginal distributions and densities to convert between pseudo-obs and original data space
+        self.empirical_kdes = []
+        self.empirical_distributions = []
+        for ii in range(self.X.shape[1]):
+            x = self.X[:,ii]
+            density_obj = sm.nonparametric.KDEUnivariate(x)
+            density_obj.fit()
+            self.empirical_kdes.append(density_obj)
+
+            ecdf_obj = ECDF(x)
+            self.empirical_distributions.append(ecdf_obj)
+        
+        self.is_fit = True
+
+    def simulate_pseudoobs(self, nsamp=500):
+        V = self.model.simulate(nsamp)
+        return V
+
+    def _get_lo_hi(self, xvec):
+        lo = min(xvec)/8
+        hi = max(xvec) + np.median(xvec)/8
+        return lo, hi
+    
+    def pobs_to_obs(self, pobs):
+        # TODO: can implement interpolation to get this smoother
+        
+        assert pobs.shape[1] == 2
+
+        lo, hi = self._get_lo_hi(self.X[:,0])
+        uu = self.empirical_kdes[0].cdf
+        x_vec = np.linspace(lo, hi, len(uu))
+        lo, hi = self._get_lo_hi(self.X[:,1])
+        vv = self.empirical_kdes[1].cdf
+        y_vec = np.linspace(lo, hi, len(vv))
+        X = np.zeros_like(pobs)
+        n = pobs.shape[0]
+        
+        for ii in range(n):
+            u, v = pobs[ii,0], pobs[ii,1]
+            best_ii_u = np.argmin(np.abs(uu-u))
+            best_ii_v = np.argmin(np.abs(vv-v))
+            X[ii,0] = x_vec[best_ii_u]
+            X[ii,1] = y_vec[best_ii_v]
+        return X
+        
+    def conditional_distribution(self, x=None, y=None, resolution=100):
+        if (x is None and y is None) or (x is not None and y is not None):
+            raise ValueError('One variable must be specified at a given value to compute the conditional distribution!')
+        if x is None:  # implies given y
+            marginal_value_idx = 0
+            conditioned_value_idx = 1
+            conditioned_value = y
+            conditional_fn = self.model.hfunc2  # computes P(U1<=u1|U2=u2)
+        else:   # implies given x
+            marginal_value_idx = 1
+            conditioned_value_idx = 0
+            conditioned_value = x
+            conditional_fn = self.model.hfunc1  # computes P(U2<=u2|U1=u1)
+            
+        # the lo and hi vals are set to be slightly beyond the bounds of the data
+        lo_val = min(self.X[:,marginal_value_idx])/8
+        hi_val = max(self.X[:,marginal_value_idx]) + np.median(self.X[:,marginal_value_idx])/4
+        marginal_var = np.linspace(lo_val, hi_val, len(self.empirical_kdes[marginal_value_idx].cdf))
+        marginal_var_resampled = np.linspace(lo_val, hi_val, resolution)
+        
+        # this is the variable we are wanting the distribution of
+        marginal_var_pseudoobs = np.linspace(0,1,resolution)
+        # this is the variable we are conditioning on
+        conditioned_value_pseudoobs = self.empirical_distributions[conditioned_value_idx](conditioned_value)
+        conditioned_var_pseudoobs = np.ones_like(marginal_var_pseudoobs)*conditioned_value_pseudoobs
+
+        # setup the vector for computing conditional distribution function
+        if x is None:
+            UV = np.vstack([marginal_var_pseudoobs, conditioned_var_pseudoobs]).T
+        else:
+            UV = np.vstack([conditioned_var_pseudoobs, marginal_var_pseudoobs]).T
+        conditional_copula_cdf = conditional_fn(UV)
+        F_cdf = np.zeros_like(conditional_copula_cdf)
+        # convert the conditional CDF to the non-pseudoobs space
+        # NOTE: this is an approximation of inverse-CDF, can we do better than this??
+        #   can do some interpolation, for example
+        for ii, k in enumerate(conditional_copula_cdf):
+            best_idx = np.argmin(np.abs(self.empirical_kdes[marginal_value_idx].cdf-k))
+            F_cdf[ii] = marginal_var[best_idx]
+
+        return (marginal_var_resampled, F_cdf), (marginal_var_pseudoobs, conditional_copula_cdf)
+
+    def sample_conditional_distribution(self, x=None, y=None, resolution=100, nsamps=500):
+        (marginal_var_resampled, F_cdf), (marginal_var_pseudoobs, conditional_copula_cdf) = \
+            self.conditional_distribution(x=x, y=y, resolution=resolution)
+
+        # use the inverse transform to convert uniform RV's to the conditional distribution
+        samps_vec = np.zeros(nsamps)
+        for jj in range(nsamps):
+            u = np.random.rand()
+            best_idx = np.argmin(np.abs(F_cdf-u))
+            samps_vec[jj] = marginal_var_resampled[best_idx]
+
+        return samps_vec
+
+class AvgBaseFeeTotalGasUsageARMAModel:
+    def __init__(self, df, basefee_col='base_fee'):
+        self.df = df
+        self.basefee_col = basefee_col
+
+        self.data_prepared = False
+
+        # Filecoin specific parameters
+        self.Gstar = 5e9  # the target block size in Gas Units for Filecoin
+        self.epochs_per_day = 2880
+        self.blocks_per_epoch = 5
+        self.blocks_per_day = self.blocks_per_epoch * self.epochs_per_day
+
+    def prepare_data(self, Gtilde_thresh=20):
+        # smaller Gtilde_thresholds correspond to more filtering
+        diff_basefee = np.concatenate([[0.], np.diff(self.df[self.basefee_col])])
+        self.G_tilde = 8*diff_basefee/self.df[self.basefee_col]
+
+        # some prelimenary filtering of the data
+        self.G_tilde = self.G_tilde[self.G_tilde!=0]
+        self.G_tilde = self.G_tilde[np.abs(self.G_tilde)<Gtilde_thresh]
+
+        self.data_prepared = True
+
+    def gtilde2Gt(self, gtilde):
+        """
+        Gtilde = (Gt-Gstar)/Gstar
+        Gstar --> target block size in Gas Units
+        """
+        Gt = gtilde*self.Gstar + self.Gstar
+        return Gt
+        
+    def fit(self, Gtilde_thresh=20, verbose=True):
+        if not self.data_prepared:
+            self.prepare_data(Gtilde_thresh=Gtilde_thresh)
+            
+        model = ARIMA(self.G_tilde, order=(1,0,0)) 
+        model_fit = model.fit()
+        if verbose:
+            print(model_fit.summary())
+
+        # convert model parameters to OU process parameters
+        # Reference: https://hackmd.io/5lcDIN23SJOrWrwy8f4Hpg#First-model-gas-as-an-Ornstein-Uhlenbeck-OU-process
+        alphaHat=model_fit.params[0]
+        phiHat=model_fit.params[1]
+        
+        # QUESTION: do we use this or do we use sigma2 from the ARIMA estimation?
+        gammaHat2=np.var(self.G_tilde[1:]-alphaHat-phiHat*self.G_tilde[:-1])
+        h=1 # probably to be changed
+        thetaHat=-1./h*np.log(phiHat)
+        muHat=alphaHat/(1-phiHat)
+        sigmaHat2=(-2./h)*(gammaHat2/(1-phiHat**2))*np.log(phiHat)
+        sigmaHat=sigmaHat2**0.5
+        sd=((0.5*sigmaHat2/thetaHat)*(1-np.exp(-2*thetaHat*h)))**0.5
+        self.ou_process_params = {
+            'h': h,
+            'theta': thetaHat,
+            'sd': sd,
+            'mu': muHat,
+        }
+
+    def sample_basefee(
+        self,
+        ndays_per_realization=1, 
+        nsamps_per_offset=10, 
+        gtilde_offset_vec=None, 
+        same_basefee_within_epoch=True
+    ):
+        if ndays_per_realization < 1:
+            print('min(ndays_per_realization) must be 1 - forcing to 1 before simulating!')
+            ndays_per_realization = 1
+        if gtilde_offset_vec is None:
+            gtilde_offset_vec = np.asarray([0])
+
+        h = self.ou_process_params['h']
+        thetaHat = self.ou_process_params['theta']
+        sd = self.ou_process_params['sd']
+        muHat = self.ou_process_params['mu']
+        
+        gtilde = []
+        basefee = []
+        for ii, gtilde_offset in enumerate(gtilde_offset_vec):
+            for jj in range(nsamps_per_offset):
+                niter_per_loop = int(self.blocks_per_day*ndays_per_realization)
+                
+                G_tilde_vec = np.zeros(niter_per_loop+1)
+                basefee_vec = np.zeros_like(G_tilde_vec)
+                # choose random values for this
+                random_idx = np.random.randint(len(self.df))
+                basefee_vec[0] = self.df[self.basefee_col].iloc[random_idx]
+                basefee_vec[1] = basefee_vec[0]  # hmm .... 
+                G_tilde_vec[0] = np.random.rand()*2 - 1 # we know Gtilde should be between -1 and 1
+                
+                for n in range(1,niter_per_loop):
+                    g_tilde_sample = G_tilde_vec[n-1]*np.exp(-thetaHat*h)+muHat*(1-np.exp(-thetaHat*h)) +sd*np.random.standard_normal()
+                    g_tilde_scaled = np.clip((g_tilde_sample + gtilde_offset)/2, -1, 1)  # negative offset means less gas usage, positive means more
+                    G_tilde_vec[n] = g_tilde_scaled
+    
+                    # this simulates that all blocks within the same epoch have the same base-fee, which I think makes sense.
+                    # however, double check w/ JP
+                    if (not same_basefee_within_epoch) or (same_basefee_within_epoch and (n % self.blocks_per_epoch == 0)):
+                        basefee_vec[n+1]=max(basefee_vec[n]*(1+G_tilde_vec[n]/8), 100*1e-18) # max for ensuring base_fee doesn't go to 0
+                    else:
+                        basefee_vec[n+1] = basefee_vec[n]
+
+                # the first sample is the seed
+                gtilde.append(G_tilde_vec[1:])
+                basefee.append(basefee_vec[1:])
+        return np.concatenate(basefee), np.concatenate(gtilde)
+
+    ## convenience functions
+    def sample_basefee_avgdaily_totalgas_sumdaily(
+        self,
+        ndays_per_realization=1, 
+        nsamps_per_offset=10, 
+        gtilde_offset_vec=None, 
+        same_basefee_within_epoch=True
+    ):
+        basefee, gtilde = self.sample_basefee(
+            ndays_per_realization=ndays_per_realization, 
+            nsamps_per_offset=nsamps_per_offset, 
+            gtilde_offset_vec=gtilde_offset_vec, 
+            same_basefee_within_epoch=same_basefee_within_epoch
+        )
+        assert len(basefee) == len(gtilde)
+        # average base fee per day
+        l = int(len(basefee)//self.blocks_per_day * self.blocks_per_day)
+        basefee = basefee[0:l]
+        gtilde = gtilde[0:l]
+        basefee_avg_day = basefee.reshape(-1,self.blocks_per_day).T.mean(axis=0)
+        gt = self.gtilde2Gt(gtilde)
+        totalgas_day = gt.reshape(-1,self.blocks_per_day).T.sum(axis=0)
+    
+        return basefee_avg_day, totalgas_day
+
