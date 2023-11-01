@@ -144,7 +144,6 @@ def get_gasforecast_df(rb_power_forecast, qa_power_forecast, fpr, rr):
     gas_forecast_df['day_renewed_qa_power_pib'] = qa_power_forecast['renewed_power']
 
     return gas_forecast_df
-
     
 # patsy style formulas
 gas2kwargs = {
@@ -469,27 +468,29 @@ class BivariateCopulaModel:
         hi = max(xvec) + np.median(xvec)/8
         return lo, hi
     
-    def pobs_to_obs(self, pobs):
+    def pobs_to_obs(self, pobs, resolution=500):
         # TODO: can implement interpolation to get this smoother
         # use the invert method
         
         assert pobs.shape[1] == 2
 
         lo, hi = self._get_lo_hi(self.X[:,0])
-        uu = self.empirical_kdes[0].cdf
-        x_vec = np.linspace(lo, hi, len(uu))
+        x_vec = np.linspace(lo, hi, resolution)
+        u_vec = self.empirical_distributions[0](x_vec)
+        u2x = interp1d(u_vec, x_vec)
+        
         lo, hi = self._get_lo_hi(self.X[:,1])
-        vv = self.empirical_kdes[1].cdf
-        y_vec = np.linspace(lo, hi, len(vv))
+        y_vec = np.linspace(lo, hi, resolution)
+        v_vec = self.empirical_distributions[1](y_vec)
+        v2y = interp1d(v_vec, y_vec)
+        
         X = np.zeros_like(pobs)
         n = pobs.shape[0]
         
         for ii in range(n):
             u, v = pobs[ii,0], pobs[ii,1]
-            best_ii_u = np.argmin(np.abs(uu-u))
-            best_ii_v = np.argmin(np.abs(vv-v))
-            X[ii,0] = x_vec[best_ii_u]
-            X[ii,1] = y_vec[best_ii_v]
+            X[ii,0] = u2x(u)
+            X[ii,1] = v2y(v)
         return X
         
     def conditional_distribution(self, x=None, y=None, resolution=500):
@@ -573,7 +574,8 @@ class AvgBaseFeeTotalGasUsageARMAModel:
         self.epochs_per_day = 2880
         self.blocks_per_epoch = 5
         self.blocks_per_day = self.blocks_per_epoch * self.epochs_per_day
-        
+
+        self.forward_fn = None
         self.inverse_fn = None
 
     def gt2gtilde(self, gt_day):
@@ -634,7 +636,8 @@ class AvgBaseFeeTotalGasUsageARMAModel:
         ndays_per_realization=1, 
         nsamps_per_offset=10, 
         gtilde_offset_vec=None, 
-        same_basefee_within_epoch=True
+        same_basefee_within_epoch=True,
+        starting_basefee=None
     ):
         if ndays_per_realization < 1:
             print('min(ndays_per_realization) must be 1 - forcing to 1 before simulating!')
@@ -657,8 +660,12 @@ class AvgBaseFeeTotalGasUsageARMAModel:
                 basefee_vec = np.zeros_like(G_tilde_vec)
                 # choose random values for this
                 random_idx = np.random.randint(len(self.df))
-                basefee_vec[0] = self.df[self.basefee_col].iloc[random_idx]
+                if starting_basefee is None:
+                    basefee_vec[0] = self.df[self.basefee_col].iloc[random_idx]
+                else:
+                    basefee_vec[0] = starting_basefee
                 basefee_vec[1] = basefee_vec[0]  # hmm .... 
+                    
                 G_tilde_vec[0] = gtilde_offset  # start at the point we want
                 for n in range(1,niter_per_loop):
                     g_tilde_sample = G_tilde_vec[n-1]*np.exp(-thetaHat*h)+muHat*(1-np.exp(-thetaHat*h)) +sd*np.random.standard_normal()
@@ -691,6 +698,7 @@ class AvgBaseFeeTotalGasUsageARMAModel:
             totalgas_vec[ii] = np.median(totalgas_day)
         
         # find the gtilde values which get us the gas values we want
+        self.forward_fn = interp1d(gtilde_vec, totalgas_vec)
         self.inverse_fn = interp1d(totalgas_vec, gtilde_vec)
     
     ## convenience functions
@@ -732,21 +740,6 @@ class AvgBaseFeeTotalGasUsageARMAModel:
         for ii, gt in enumerate(gt_total_vec):
             gtilde_sim = self.inverse_fn(gt)
             gtilde_offset_vec[ii] = gtilde_sim
-        print(gtilde_offset_vec)
-        # basefee, gtilde = self.sample_basefee(
-        #     ndays_per_realization=ndays_per_realization, 
-        #     nsamps_per_offset=nsamps_per_offset, 
-        #     gtilde_offset_vec=gtilde_offset_vec, 
-        #     same_basefee_within_epoch=same_basefee_within_epoch
-        # )
-        # assert len(basefee) == len(gtilde)
-        # # average base fee per day
-        # l = int(len(basefee)//self.blocks_per_day * self.blocks_per_day)
-        # basefee = basefee[0:l]
-        # gtilde = gtilde[0:l]
-        # basefee_avg_day = basefee.reshape(-1,self.blocks_per_day).T.mean(axis=0)
-        # gt = self.gtilde2Gt(gtilde)
-        # totalgas_day = gt.reshape(-1,self.blocks_per_day).T.sum(axis=0)
     
         basefee_avg_day, totalgas_day = self._sample_basefee_avgdaily_totalgas_sumdaily_gtildeinput(
             ndays_per_realization=ndays_per_realization, 
@@ -756,3 +749,141 @@ class AvgBaseFeeTotalGasUsageARMAModel:
         )
         return basefee_avg_day, totalgas_day
 
+def get_basefee_totalgas_traindata():
+    """
+    Based on our simulations, the historical data mapping TotalGas(day) --> Avg(BaseFee, day)
+    is missing some ranges of data. Specifically, TotalGas in the historical data ranges from 30k-50k
+    Billion Gas units.  If we build a model from that dataset, and then try to perform inference on it,
+    we could run into errors.
+
+    This function uses an OU model to simulate additional TotalGas(day) --> Avg(BaseFee, day) datasets
+    for low TotalGas ranges, and augments the historical training dataset with these to build a more
+    complete model.
+
+    For further details on the reasoning for this, see the notebook: 
+        CryptoEconLab/notebooks/mechafil_jax/direct_filp/1_basefee_totalgas_copula.ipynb
+    """
+    
+    # first, pull historical data
+
+    # NOTE here that we pull data from before FIP45, b/c here, we are interested in TotalGas <--> BaseFee,
+    # so we don't need to restrict ourselves to the new regime of data
+    training_start_date = date(2021, 12, 1)
+    training_end_date = date.today()-timedelta(days=3)
+    df_basefee = get_basefee_spacescope(training_start_date, training_end_date)
+    df_basefee_daily = df_basefee.groupby(df_basefee['hour_date'].dt.date).mean()
+    gas_train_df = get_daily_gasusage_training_data(training_start_date, training_end_date)
+    train_df_historical = pd.DataFrame()
+    train_df_historical['daily_base_fee'] = df_basefee_daily['unit_base_fee'].values
+    train_df_historical['total_gas_used'] = gas_train_df['total_gas_used'].values
+
+    # simulate data for lower gas regimes
+    # begin by getting chain data to simulate Gt, block by block
+    # Generate data for lower total_gas regimes, using the procedure outlined above.
+    df_basefee_lily = get_message_gas_economy_lily(HEIGHT=3_000_000)
+    df_basefee_lily=df_basefee_lily.sort_values(by='height')
+    df_basefee_lily=df_basefee_lily.set_index('height')
+    firstBlock=df_basefee_lily.index[0]
+    lastBlock=df_basefee_lily.index[-1]
+
+    # build a time-series model of the TotalGas
+    basefee_totalgas_tsmodel = AvgBaseFeeTotalGasUsageARMAModel(df_basefee_lily)
+    basefee_totalgas_tsmodel.fit()
+
+    # generate data to fill in missing data.
+    # the offests are set such that we get upto the 30k gas units (units = Billions), since we have real-data for after that
+    # generate enough such that synthetic and real data are about matched in terms of the # of samples
+    desired_gas_vec = np.linspace(10000, 30000, 10)*1e9
+    
+    # simulate the data for the different total gas usage
+    basefee_avg_day, totalgas_day = basefee_totalgas_tsmodel.sample_basefee_avgdaily_totalgas_sumdaily(
+        ndays_per_realization=1, 
+        nsamps_per_offset=len(train_df_historical)//len(desired_gas_vec),   # try to balance the dataset between synthetic & historical
+        gt_total_vec=desired_gas_vec,
+        same_basefee_within_epoch=True
+    )
+    # put this into a dataframe
+    train_df_synthetic = pd.DataFrame()
+    train_df_synthetic['daily_base_fee'] = basefee_avg_day*1e9  # convert to units of nanofil
+    train_df_synthetic['total_gas_used'] = totalgas_day
+
+    # build the full dataset
+    train_df_full = pd.concat([train_df_historical, train_df_synthetic], ignore_index=True)
+    return train_df_full
+
+def build_basefee_totalgas_copula_model(train_df):
+    copula_model = BivariateCopulaModel(train_df[['daily_base_fee', 'total_gas_used']].values)
+    copula_model.fit()
+    return copula_model
+
+def totalgas2basefee(copula_model, total_gas_vec, method='quantile', method_kwargs=None):
+    if method == 'quantile':
+        if method_kwargs is None:
+            qvec = [0.5]
+        else:
+            qvec = method_kwargs['qvec']
+        copula_samples = np.zeros_like(total_gas_vec)
+        for ii, g in enumerate(total_gas_vec):
+            # the [0] is b/c qvec is a vector, so get the value of interest.
+            copula_samples[ii] = copula_model.quantile_conditional_distribution(x=None, y=g, qvec=qvec)[0]
+    elif method == 'sampling':
+        if method_kwargs is None:
+            nsamp = 100
+        else:
+            nsamp = method_kwargs['nsamp']
+        copula_samples = np.zeros((nsamp, len(total_gas_vec)))
+        for ii, g in enumerate(total_gas_vec):
+            samps_vec = copula_model.sample_conditional_distribution(x=None, y=g, resolution=100, nsamps=nsamp)
+            copula_samples[:,ii] = samps_vec
+    else:
+        raise ValueError('Invalid method specified!')
+
+    return copula_samples
+
+class TotalGasBurntFilModel:
+    def __init__(
+        self, 
+        apply_log_x=True, 
+        apply_log_y=True,
+        train_start_date=None, 
+        train_end_date=None,
+        spacescope_auth='/Users/kiran/code/auth/kiran_spacescope_auth.json',
+    ):
+        self.apply_log_x = apply_log_x
+        self.apply_log_y = apply_log_y
+
+        self.train_start_date = train_start_date if train_start_date is not None else date(2021, 3, 15)
+        self.train_end_date = train_end_date if train_end_date is not None else date.today()-timedelta(days=3)
+        self.auth = spacescope_auth
+        
+        self.model = None
+        self.train_df = self.get_training_data()
+        self.fit()
+
+    def get_training_data(self):
+        gas_train_df = get_daily_gasusage_training_data(start_date, end_date)
+        sso = dss.SpacescopeDataConnection(self.auth)
+        circ_df = sso.query_spacescope_supply_stats(start_date, end_date)
+
+        df = pd.DataFrame()
+        x = gas_train_df['total_gas_used'].values
+        y = circ_df['burnt_fil'].diff()
+        df['total_gas_used'] = np.log10(x) if self.apply_log_x else x
+        df['burnt_fil'] = np.log10(y) if self.apply_log_y else y
+        return df.dropna()
+    
+    def fit(self):
+        if self.model is not None:
+            return
+        self.model = gas_models.BivariateCopulaModel(dff[['total_gas_used', 'burnt_fil']].values)
+        self.model.fit()
+
+    def gas2burn(self, gas_vec, qvec=None):
+        # computes the conditional distribution P(BurntFIL|TotalGas=g)
+        # then, computes values of BurntFil at given quantiles
+        pass
+
+    def gas2burn_samples(self, gas_vec, num_mc=500):
+        # computes conditional distribution P(BurntFIL|TotalGas=g)
+        # then samples from that conditional distribution and returns samples in a vector
+        pass
